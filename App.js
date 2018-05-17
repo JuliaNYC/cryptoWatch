@@ -5,22 +5,26 @@
  */
 
 import React, { Component } from 'react';
-import Header from "./src/components/Header";
 import {
-  Platform,
-  StyleSheet,
-  Text,
-  View
+    Platform,
+    StyleSheet,
+    Text,
+    View
 } from 'react-native';
+import { Provider } from 'react-redux';
+import Header from "./src/components/Header";
+import Store from './src/Store';
 
 
 type Props = {};
 export default class App extends Component<Props> {
   render() {
     return (
+        <Provider store={Store}>
       <View style={styles.container}>
       <Header />
       </View>
+        </Provider>
     );
   }
 }
@@ -28,18 +32,7 @@ export default class App extends Component<Props> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  /*  justifyContent: 'center',*/
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+  }
 });
