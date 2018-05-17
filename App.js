@@ -1,9 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
 import {
     Platform,
@@ -12,6 +6,7 @@ import {
     View
 } from 'react-native';
 import { Provider } from 'react-redux';
+import CryptoContainer from "./src/containers/CryptoContainer";
 import Header from "./src/components/Header";
 import Store from './src/Store';
 
@@ -23,6 +18,7 @@ export default class App extends Component<Props> {
         <Provider store={Store}>
       <View style={styles.container}>
       <Header />
+          <CryptoContainer />
       </View>
         </Provider>
     );
