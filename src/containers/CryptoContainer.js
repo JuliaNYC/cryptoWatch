@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import { View, Text} from "react-native";
+import { View, Text, ScrollView} from "react-native";
 
 import CryptoItem from "../components/CryptoItem";
 import FetchCoinData from "../actions/FetchCoinData";
@@ -43,14 +43,21 @@ class CryptoContainer extends React.Component {
         }
         return (
             <View>
-                <View>
+            <ScrollView style={styles.scroll}>
                     {this.renderCryptoItems()}
-                </View>
+            </ScrollView>
             </View>
         )
     }
 
 
+}
+
+const styles = {
+    scroll: {
+        paddingBottom: 100,
+        paddingTop: 55
+    }
 }
 
 function mapStateToProps(state) {
