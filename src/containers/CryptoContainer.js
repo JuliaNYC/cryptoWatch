@@ -2,6 +2,7 @@ import React from "react";
 import {connect} from "react-redux";
 import { View, Text} from "react-native";
 
+import CryptoItem from "../components/CryptoItem";
 import FetchCoinData from "../actions/FetchCoinData";
 
 class CryptoContainer extends React.Component {
@@ -11,16 +12,40 @@ class CryptoContainer extends React.Component {
 
     }
 
+    renderCryptoItems() {
+        console.log(" renderCryptoItems", this.props.crypto.data)
+        return this.props.crypto.data.map((cryptoCoin, index) =>
+            <CryptoItem
+                key={index}
+                name={cryptoCoin.name}
+                symbol={cryptoCoin.symbol}
+                price={cryptoCoin.price_usd}
+                percent_change_24h={cryptoCoin.percent_change_24h}
+                percent_change_7d={cryptoCoin.percent_change_7d}
+            />
+        )
 
-    render() {
-        console.log("crypto", this.props.crypto)
-        return (
-            <View>
-                <Text>Hello Container</Text>
-            </View>
-            )
 
     }
+
+    render() {
+        if (this.props.crypto.isFetching) {
+            return (
+                <View>
+                   <Text>no results</Text>
+                </View>
+            )
+        }
+        return (
+            <View>
+                <View>
+                    {this.renderCryptoItems()}
+                </View>
+            </View>
+        )
+    }
+
+
 }
 
 function mapStateToProps(state) {
