@@ -1,12 +1,13 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
-
+import CryptoIcon from "react-native-crypto-icons";
 
 const CryptoItem = (props) => {
 
     return (
         <View style = {styles.itemContainer}>
             <View style = {styles.itemWrapper}>
+                <CryptoIcon name='ada' style={{ fontSize: 45, color: 'green' }} />
 
                 <Text style = {styles.itemSymbol}> {props.symbol} </Text>
                 <Text style = {styles.itemName}>{props.name}</Text>
