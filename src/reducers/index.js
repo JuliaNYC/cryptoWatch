@@ -1,6 +1,11 @@
-import {combineReducers} from redux;
+import {combineReducers} from "redux";
 import CryptoReducer from "./CryptoReducer";
 
-export default combineReducers({
+/*export default combineReducers({
     crypto:CryptoReducer
-})
+})*/
+
+
+export default combineReducers({
+    crypto: CryptoReducer
+});
