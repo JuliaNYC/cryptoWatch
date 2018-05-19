@@ -4,6 +4,7 @@ import { View, Text} from "react-native";
 
 import CryptoItem from "../components/CryptoItem";
 import FetchCoinData from "../actions/FetchCoinData";
+import Spinner from "react-native-loading-spinner-overlay";
 
 class CryptoContainer extends React.Component {
 
@@ -32,7 +33,11 @@ class CryptoContainer extends React.Component {
         if (this.props.crypto.isFetching) {
             return (
                 <View>
-                   <Text>no results</Text>
+                    <Spinner
+                        visible={this.props.crypto.isFetching}
+                        textContent={"Loading..."}
+                        animation="fade"
+                    />
                 </View>
             )
         }
