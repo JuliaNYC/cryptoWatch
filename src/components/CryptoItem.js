@@ -1,9 +1,12 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
+
+import Chart from "./Chart";
 import CryptoIcon from "react-native-crypto-icons";
 import {colors} from "../utils/Constants";
 
 const CryptoItem = (props) => {
+    console.log("propsss", props)
     const color = colors[Math.floor(Math.random()*colors.length)];
     return (
         <View style = {styles.itemContainer}>
@@ -22,6 +25,11 @@ const CryptoItem = (props) => {
                     <Text style={props.percent_change_7d < 0 ? styles.percentChangeMinus : styles.percentChangePlus }> {props.percent_change_7d} % </Text>
                 </Text>
             </View>
+            <Chart
+                oneHrs={props.percent_change_1h}
+                oneDay={props.percent_change_24h}
+                sevenDays={props.percent_change_7d}
+            />
         </View>
     )
 }

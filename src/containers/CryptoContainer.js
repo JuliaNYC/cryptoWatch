@@ -23,6 +23,7 @@ class CryptoContainer extends React.Component {
                 price={cryptoCoin.price_usd}
                 percent_change_24h={cryptoCoin.percent_change_24h}
                 percent_change_7d={cryptoCoin.percent_change_7d}
+                percent_change_1h={cryptoCoin.percent_change_1h}
             />
         )
 
