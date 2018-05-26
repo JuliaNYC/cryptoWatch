@@ -27,7 +27,7 @@ import axios from "axios";
 import {
     api_root_url,
     FETCHING_COIN_DATA,
-    SEARCH_TEXT,
+    SEARCH_RESULTS,
     FETCH_COIN_DATA_SUCESS,
     FETCH_COIN_DATA_ERR} from "../utils/Constants.js";
 
@@ -52,7 +52,7 @@ FilterResults = (input) => {
     console.warn("action filterresults --->", input)
     return dispatch => {
         dispatch({
-            type: SEARCH_TEXT,
+            type: SEARCH_RESULTS,
             search:input
         })
 

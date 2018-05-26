@@ -1,7 +1,7 @@
 import {
     FETCHING_COIN_DATA,
     FETCH_COIN_DATA_SUCESS,
-    SEARCH_TEXT,
+    SEARCH_RESULTS,
     FETCH_COIN_DATA_ERR} from "../utils/Constants";
 
 const initialState = {
@@ -30,7 +30,7 @@ export default function (state = initialState, action) {
                 errorMsg: null
             }
 
-        case SEARCH_TEXT:
+        case SEARCH_RESULTS:
             return {
                 ...state,
                 searchItem: action.search
