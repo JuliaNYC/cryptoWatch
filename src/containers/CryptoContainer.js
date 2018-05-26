@@ -16,22 +16,10 @@ class CryptoContainer extends React.Component {
         console.log(" renderCryptoItems", this.props.crypto.data)
         return this.props.crypto.data.map((cryptoCoin, index) =>
             <CryptoItem
-           /*     key={index}
-                name={cryptoCoin.name}
-                symbol={cryptoCoin.symbol}
-                price={cryptoCoin.price_usd}
-                percent_change_24h={cryptoCoin.percent_change_24h}
-                percent_change_7d={cryptoCoin.percent_change_7d}
-                percent_change_1h={cryptoCoin.percent_change_1h}
-                available_supply={cryptoCoin.available_supply}
-                total_supply={cryptoCoin.total_supply}
-                max_supply={cryptoCoin.max_supply}*/
                 key={index}
-        /*        infos={cryptoCoin}*/
                 infos={cryptoCoin}
             />
         )
-
 
     }
 

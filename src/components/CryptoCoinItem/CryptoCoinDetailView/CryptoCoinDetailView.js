@@ -5,11 +5,13 @@ import CryptoCoinInfo from "./Info";
 
 const CryptoCoinDetailView = ({infos}) => {
     console.warn("infos", infos)
-    const {percent_change_1h, percent_change_24h, percent_change_7d} = infos;
+    const {percent_change_1h, percent_change_24h, percent_change_7d, total_supply, max_supply, available_supply} = infos;
 
         return <View>
             <CryptoCoinInfo
-
+                availableSupply={available_supply}
+                maxSupply={max_supply}
+                totalSupply={total_supply}
             />
             <Chart
                 oneHrs={percent_change_1h}
