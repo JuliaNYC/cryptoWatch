@@ -1,40 +1,98 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, Button, StyleSheet } from "react-native";
 
-import Chart from "./Chart";
+import CryptoItemDetail from "./CryptoItemDetail";
 import CryptoIcon from "react-native-crypto-icons";
 import {colors} from "../utils/Constants";
 
-const CryptoItem = (props) => {
-    console.log("propsss", props)
-    const color = colors[Math.floor(Math.random()*colors.length)];
-    return (
-        <View style = {styles.itemContainer}>
-            <View style = {styles.itemWrapper}>
-                <CryptoIcon name={props.symbol.toLowerCase()} style={{ fontSize: 45, color: color }} />
+export default class CryptoItem extends React.Component {
 
-                <Text style = {styles.itemSymbol}> {props.symbol} </Text>
-                <Text style = {styles.itemName}>{props.name}</Text>
-                <Text style = {styles.itemPrice}>$ {props.price}</Text>
-            </View>
-            <View style = {styles.statisticsWrapper}>
-                <Text>24h:
-                    <Text style={props.percent_change_24h < 0 ? styles.percentChangeMinus : styles.percentChangePlus }> {props.percent_change_24h} % </Text>
-                </Text>
-                <Text>7d:
-                    <Text style={props.percent_change_7d < 0 ? styles.percentChangeMinus : styles.percentChangePlus }> {props.percent_change_7d} % </Text>
-                </Text>
-            </View>
-            <Chart
-                oneHrs={props.percent_change_1h}
-                oneDay={props.percent_change_24h}
-                sevenDays={props.percent_change_7d}
+    constructor(props){
+        super(props);
+        this.state = {
+            showDetailView: false
+        }
+    }
+
+    renderDetailView = () => {
+        console.warn("renderDetailView called")
+        this.setState({
+            showDetailView: !this.state.showDetailView
+        })
+    }
+
+   /* closeDetailView = () => {
+        console.warn("closeDetailView called")
+        this.setState({
+            showDetailView: false
+        })
+    }*/
+
+    render () {
+        console.log("propsss", this.state.showDetailView)
+        const color = colors[Math.floor(Math.random() * colors.length)];
+/*
+        const button = this.state.showDetailView === true ? (
+            <Button
+                onPress={this.renderDetailView}
+                title="Learn More"
+                color="#841584"
+                accessibilityLabel="Learn more about this purple button"
             />
-        </View>
-    )
+        ) : (
+            <Button
+                onPress={this.closeDetailView}
+                title="Close"
+                color="green"
+                accessibilityLabel="Close Detail View"
+            />
+        );*/
+
+        return (
+            <View style={styles.itemContainer}>
+                <View style={styles.itemWrapper}>
+                    <CryptoIcon name={this.props.symbol.toLowerCase()} style={{fontSize: 45, color: color}}/>
+
+                    <Text style={styles.itemSymbol}> {this.props.symbol} </Text>
+                    <Text style={styles.itemName}>{this.props.name}</Text>
+                    <Text style={styles.itemPrice}>$ {this.props.price}</Text>
+                </View>
+                <View style={styles.statisticsWrapper}>
+                    <Text>24h:
+                        <Text
+                            style={this.props.percent_change_24h < 0 ? styles.percentChangeMinus : styles.percentChangePlus}> {this.props.percent_change_24h}
+                            % </Text>
+                    </Text>
+                    <Text>7d:
+                        <Text
+                            style={this.props.percent_change_7d < 0 ? styles.percentChangeMinus : styles.percentChangePlus}> {this.props.percent_change_7d}
+                            % </Text>
+                    </Text>
+                </View>
+                <Button
+                    onPress={this.renderDetailView}
+                    title={!this.state.showDetailView ? 'Learn more': 'close'}
+                    color={!this.state.showDetailView ? 'green' : 'yellow' }
+                />
+
+                { this.state.showDetailView === true ?
+                    <CryptoItemDetail
+                        chartMeasurements={this.props}
+                        showDetailView={this.state.showDetailView}/>
+                    : null
+                }
+
+            </View>
+        )
+    }
 }
 
-export default CryptoItem;
+
+
+
+
+
+
 
 const styles = StyleSheet.create ({
     itemContainer: {

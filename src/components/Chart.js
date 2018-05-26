@@ -1,12 +1,9 @@
 import React from 'react'
-import { BarChart, XAxis, Grid } from 'react-native-svg-charts'
+import { BarChart, XAxis } from 'react-native-svg-charts'
 import { View } from 'react-native'
 import * as scale from 'd3-scale'
 
 const Chart = (props) => {
-console.warn(props, props.sevenDays)
-  //  render() {
-
         const data = [
             {
                 value: parseInt(props.oneHrs),

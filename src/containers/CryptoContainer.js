@@ -8,9 +8,15 @@ import Spinner from "react-native-loading-spinner-overlay";
 
 class CryptoContainer extends React.Component {
 
+    constructor(props){
+        super(props);
+        this.state = {
+            cryptoCoins: []
+        }
+    }
+
     componentDidMount() {
         this.props.FetchCoinData()
-
     }
 
     renderCryptoItems() {
