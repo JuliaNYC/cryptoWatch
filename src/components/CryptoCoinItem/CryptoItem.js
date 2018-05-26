@@ -21,7 +21,6 @@ export default class CryptoItem extends React.Component {
 
 
     render () {
-    console.warn("cryptoitem", this.props)
         return (
             <View  style={styles.itemContainer}>
                 <CryptoItemSummary
