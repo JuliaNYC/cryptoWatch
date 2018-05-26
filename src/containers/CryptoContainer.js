@@ -2,18 +2,11 @@ import React from "react";
 import {connect} from "react-redux";
 import { View, Text, ScrollView} from "react-native";
 
-import CryptoItem from "../components/CryptoItem";
+import CryptoItem from "../components/CryptoCoinItem/CryptoItem";
 import FetchCoinData from "../actions/FetchCoinData";
 import Spinner from "react-native-loading-spinner-overlay";
 
 class CryptoContainer extends React.Component {
-
-    constructor(props){
-        super(props);
-        this.state = {
-            cryptoCoins: []
-        }
-    }
 
     componentDidMount() {
         this.props.FetchCoinData()
@@ -23,13 +16,19 @@ class CryptoContainer extends React.Component {
         console.log(" renderCryptoItems", this.props.crypto.data)
         return this.props.crypto.data.map((cryptoCoin, index) =>
             <CryptoItem
-                key={index}
+           /*     key={index}
                 name={cryptoCoin.name}
                 symbol={cryptoCoin.symbol}
                 price={cryptoCoin.price_usd}
                 percent_change_24h={cryptoCoin.percent_change_24h}
                 percent_change_7d={cryptoCoin.percent_change_7d}
                 percent_change_1h={cryptoCoin.percent_change_1h}
+                available_supply={cryptoCoin.available_supply}
+                total_supply={cryptoCoin.total_supply}
+                max_supply={cryptoCoin.max_supply}*/
+                key={index}
+        /*        infos={cryptoCoin}*/
+                infos={cryptoCoin}
             />
         )
 
