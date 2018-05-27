@@ -5,7 +5,7 @@ import { View, Text, TextInput, ScrollView} from "react-native";
 import CryptoItem from "../components/CryptoCoinItem/CryptoItem";
 import {FetchCoinData, FilterResults} from "../actions/FetchCoinData";
 import Spinner from "react-native-loading-spinner-overlay";
-import { SearchBar } from 'react-native-elements'
+import { SearchBar, buttonStyle } from 'react-native-elements'
 class CryptoContainer extends React.Component {
 
     componentDidMount() {

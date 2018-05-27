@@ -3,6 +3,8 @@ import { View, Button, StyleSheet } from "react-native";
 
 import CryptoCoinDetailView from "./CryptoCoinDetailView/CryptoCoinDetailView";
 import CryptoItemSummary from "./CryptoItemSummary";
+/*import Button from "../Button";*/
+import {buttonStyle } from 'react-native-elements'
 
 export default class CryptoItem extends React.Component {
 
@@ -26,12 +28,17 @@ export default class CryptoItem extends React.Component {
                 <CryptoItemSummary
                     infos={this.props.infos}
                 />
+               {/* <Button onPress={this.renderDetailView}>
+                    {!this.state.showDetailView ? 'Learn more': 'close'}
+                </Button>*/}
 
+                <View style={styles.button}>
                 <Button
                     onPress={this.renderDetailView}
                     title={!this.state.showDetailView ? 'Learn more': 'close'}
-                    color={!this.state.showDetailView ? 'green' : 'yellow' }
+                    color="#841584"
                 />
+                </View>
 
                 { this.state.showDetailView === true ?
                     <CryptoCoinDetailView
@@ -53,5 +60,8 @@ const styles = StyleSheet.create ({
         borderBottomColor: "#e5e5e5",
         borderBottomWidth: 3,
         padding: 20
+    },
+    button: {
+        backgroundColor: 'pink'
     }
 })
