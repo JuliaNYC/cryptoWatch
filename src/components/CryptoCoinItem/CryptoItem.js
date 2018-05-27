@@ -4,7 +4,7 @@ import { View, Button, StyleSheet } from "react-native";
 import CryptoCoinDetailView from "./CryptoCoinDetailView/CryptoCoinDetailView";
 import CryptoItemSummary from "./CryptoItemSummary";
 /*import Button from "../Button";*/
-import {buttonStyle } from 'react-native-elements'
+import Spinner from "react-native-loading-spinner-overlay";
 
 export default class CryptoItem extends React.Component {
 
@@ -17,8 +17,29 @@ export default class CryptoItem extends React.Component {
 
     renderDetailView = () => {
         this.setState({
-            showDetailView: !this.state.showDetailView
+            showDetailView: !this.state.showDetailView,
+            loading: false
         })
+    }
+
+    renderButton = () => {
+        if (this.state.loading) {
+            return  (
+                <Spinner
+                visible={this.state.loading}
+                textContent={"Loading..."}
+                animation="fade"
+            />
+            )
+        }
+        return (
+            <Button
+                onPress={this.renderDetailView}
+                title={!this.state.showDetailView ? 'Learn more': 'close'}
+                color="#841584"
+            />
+        )
+
     }
 
 
@@ -33,13 +54,14 @@ export default class CryptoItem extends React.Component {
                 </Button>*/}
 
                 <View style={styles.button}>
-                <Button
+              {/*  <Button
                     onPress={this.renderDetailView}
                     title={!this.state.showDetailView ? 'Learn more': 'close'}
                     color="#841584"
                 />
+                </View>*/}
+                    {this.renderButton()}
                 </View>
-
                 { this.state.showDetailView === true ?
                     <CryptoCoinDetailView
                         infos={this.props.infos}
