@@ -5,13 +5,25 @@ export default (coins, { text, sortBy}) => {
             return coin.name.toLowerCase().includes(text.toLowerCase()) || coin.symbol.toLowerCase().includes(text.toLowerCase());
 
         }).sort((coin1, coin2) => {
-console.warn("sortby ?????", sortBy)
-                if (sortBy === 'price_usd') {
+                if (sortBy === 'sortByLowestPrice') {
                     return parseInt(coin1.price_usd) < parseInt(coin2.price_usd) ? -1 : 1;
                 }
+            if (sortBy === 'sortByHighestPrice') {
+                return parseInt(coin1.price_usd) > parseInt(coin2.price_usd) ? -1 : 1;
+            }
             });
     }
 
 
 }
 
+/*
+sortByLowestPrice
+sortByHighestPrice
+
+sortByLowestRank
+sortByHighestRank
+
+sortByLowestPricePercentageUp7d
+sortByHighestPercentageDrop7d
+*/

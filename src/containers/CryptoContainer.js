@@ -55,8 +55,12 @@ class CryptoContainer extends React.Component {
                 platform='ios'
             />
                 <Button
-                    title="Filter me"
-                    onPress={() => this.props.sortBy('price_usd')}
+                    title="Lowest Price"
+                    onPress={() => this.props.sortBy('sortByLowestPrice')}
+                />
+                <Button
+                    title="Highest Price"
+                    onPress={() => this.props.sortBy('sortByHighestPrice')}
                 />
 
                     {this.renderCryptoItems()}
