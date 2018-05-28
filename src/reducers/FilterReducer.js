@@ -19,11 +19,11 @@ export default (state = initialState, action) => {
                 text: action.text
             };
 
-        /*case 'SORT_BY':
+        case 'SORT_BY':
             return {
                 ...state,
                 sortBy: action.sortType
-            };*/
+            };
 
         default:
             return state;

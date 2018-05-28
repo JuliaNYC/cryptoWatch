@@ -2,23 +2,13 @@ import {
     FILTER_TEXT,
     SORT_BY} from "../utils/Constants";
 
-const filtersReducerDefaultState = {
+const initialState = {
     text: '',
     sortBy: ''
 };
 
-/*export const filterText = (text = '') => {
-    return dispatch => {
-        dispatch({
-            type: 'FILTER_TEXT',
-            text
-        })
-    }
 
-};*/
-
-
-export const filterDataAction = (text) => {
+export const searchCoins = (text) => {
     console.warn("action filterResults", text)
         return dispatch => {
             dispatch({
@@ -29,7 +19,7 @@ export const filterDataAction = (text) => {
         }
     }
 
-/*export const sortBy = (sortType) => {
+export const sortBy = (sortType) => {
     return dispatch => {
         dispatch({
             type: 'SORT_BY',
@@ -37,5 +27,5 @@ export const filterDataAction = (text) => {
         })
     }
 
-};*/
+};
 

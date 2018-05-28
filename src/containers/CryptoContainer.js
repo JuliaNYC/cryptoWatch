@@ -3,9 +3,8 @@ import {connect} from "react-redux";
 import { View, Button, ScrollView} from "react-native";
 
 import CryptoItem from "../components/CryptoCoinItem/CryptoItem";
-/*import {FetchCoinData, FilterResults, filterDataByPrice} from "../actions/FetchCoinData";*/
 import {fetchCoinData} from "../actions/FetchCoinDataAction";
-import {filterDataAction} from "../actions/FilterDataAction";
+import {searchCoins, sortBy} from "../actions/FilterDataAction";
 
 import Spinner from "react-native-loading-spinner-overlay";
 import { SearchBar} from 'react-native-elements'
@@ -18,13 +17,12 @@ class CryptoContainer extends React.Component {
         this.props.fetchCoinData()
     }
 
-    filterResults = (input) => {
+    searchResults = (input) => {
         console.warn("input", input)
-        this.props.filterResults(input)
+        this.props.searchCoins(input)
     }
 
     renderCryptoItems() {
-      //  console.warn("  renderCryptoItems", this.props.cryptoCoins)
         return this.props.cryptoCoins.map((cryptoCoin, index) =>
             <CryptoItem
                 key={index}
@@ -51,14 +49,14 @@ class CryptoContainer extends React.Component {
             <ScrollView style={styles.scroll}>
                <SearchBar
                 lightTheme
-                onChangeText={this.filterResults}
+                onChangeText={this.searchResults}
                 clearIcon
                 placeholder='Type Here...'
                 platform='ios'
             />
                 <Button
                     title="Filter me"
-                    onPress={() => this.props.filterDataByPrice()}
+                    onPress={() => this.props.sortBy('price_usd')}
                 />
 
                     {this.renderCryptoItems()}
@@ -89,4 +87,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, {fetchCoinData, filterDataAction})(CryptoContainer)
+export default connect(mapStateToProps, {fetchCoinData, searchCoins, sortBy})(CryptoContainer)
