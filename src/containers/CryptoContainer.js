@@ -63,6 +63,15 @@ class CryptoContainer extends React.Component {
                     onPress={() => this.props.sortBy('sortByHighestPrice')}
                 />
 
+                <Button
+                    title="Lowest Rank"
+                    onPress={() => this.props.sortBy('sortByLowestRank')}
+                />
+                <Button
+                    title="Highest Rank"
+                    onPress={() => this.props.sortBy('sortByHighestRank')}
+                />
+
                     {this.renderCryptoItems()}
             </ScrollView>
             </View>
