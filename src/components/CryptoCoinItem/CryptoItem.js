@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Button, StyleSheet } from "react-native";
+import {View, Button, StyleSheet} from "react-native";
 
 import CryptoCoinDetailView from "./CryptoCoinDetailView/CryptoCoinDetailView";
 import CryptoItemSummary from "./CryptoItemSummary";
@@ -8,7 +8,7 @@ import Spinner from "react-native-loading-spinner-overlay";
 
 export default class CryptoItem extends React.Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             showDetailView: false
@@ -24,18 +24,18 @@ export default class CryptoItem extends React.Component {
 
     renderButton = () => {
         if (this.state.loading) {
-            return  (
+            return (
                 <Spinner
-                visible={this.state.loading}
-                textContent={"Loading..."}
-                animation="fade"
-            />
+                    visible={this.state.loading}
+                    textContent={"Loading..."}
+                    animation="fade"
+                />
             )
         }
         return (
             <Button
                 onPress={this.renderDetailView}
-                title={!this.state.showDetailView ? 'Learn more': 'close'}
+                title={!this.state.showDetailView ? 'Learn more' : 'close'}
                 color="#841584"
             />
         )
@@ -43,26 +43,20 @@ export default class CryptoItem extends React.Component {
     }
 
 
-    render () {
+    render() {
+        const {itemContainer, button} = styles;
+
         return (
-            <View  style={styles.itemContainer}>
+            <View style={itemContainer}>
                 <CryptoItemSummary
                     infos={this.props.infos}
                 />
-               {/* <Button onPress={this.renderDetailView}>
-                    {!this.state.showDetailView ? 'Learn more': 'close'}
-                </Button>*/}
 
-                <View style={styles.button}>
-              {/*  <Button
-                    onPress={this.renderDetailView}
-                    title={!this.state.showDetailView ? 'Learn more': 'close'}
-                    color="#841584"
-                />
-                </View>*/}
+                <View style={button}>
                     {this.renderButton()}
                 </View>
-                { this.state.showDetailView === true ?
+
+                {this.state.showDetailView ?
                     <CryptoCoinDetailView
                         infos={this.props.infos}
                         showDetailView={this.state.showDetailView}/>
@@ -75,7 +69,7 @@ export default class CryptoItem extends React.Component {
 }
 
 
-const styles = StyleSheet.create ({
+const styles = StyleSheet.create({
     itemContainer: {
         display: "flex",
         marginBottom: 20,
