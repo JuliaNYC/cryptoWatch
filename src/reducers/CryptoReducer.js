@@ -34,8 +34,8 @@ export default function (state = initialState, action) {
                 ...state,
                 isFetching: false,
              //  data : state.data!== null & action.payload!== null && action.payload!== undefined ? [...state.data, ...action.payload] : action.payload,
-                data: action.payload,
-             /*   data: [...state.data, action.payload],*/
+              //  data: action.payload,
+                data: [...state.data, ...action.payload],
                 hasError: false
               //  errorMsg: null
             }
