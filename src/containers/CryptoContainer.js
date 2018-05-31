@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import { View, Button, ScrollView} from "react-native";
+import { View, Button, ScrollView, Picker} from "react-native";
 
 import CryptoItem from "../components/CryptoCoinItem/CryptoItem";
 import {fetchCoinData} from "../actions/FetchCoinDataAction";
@@ -13,12 +13,16 @@ import filterData from '../selectors';
 
 class CryptoContainer extends React.Component {
 
+    state = {
+        pageCounter: 1
+    }
+
     componentDidMount() {
-        this.props.fetchCoinData()
+    //    this.props.fetchCoinData()
+        this.props.fetchCoinData(0)
     }
 
     searchResults = (input) => {
-        console.warn("input", input)
         this.props.searchCoins(input)
     }
 
@@ -32,7 +36,16 @@ class CryptoContainer extends React.Component {
 
     }
 
+    loadMoreData = () => {
+       // console.warn("loadmoredat called", this.state.pageCounter)
+        if (this.state.pageCounter>0) {
+            this.props.fetchCoinData(`${this.state.pageCounter}01`);
+            this.state.pageCounter++;
+        }
+    }
+
     render() {
+        console.warn("render", this.props.cryptoCoins)
         if (this.props.isFetching) {
             return (
                 <View>
@@ -54,6 +67,8 @@ class CryptoContainer extends React.Component {
                 placeholder='Type Here...'
                 platform='ios'
             />
+
+
                 <Button
                     title="Lowest Price"
                     onPress={() => this.props.sortBy('sortByLowestPrice')}
@@ -72,8 +87,17 @@ class CryptoContainer extends React.Component {
                     onPress={() => this.props.sortBy('sortByHighestRank')}
                 />
 
+
+
                     {this.renderCryptoItems()}
+<View style={{marginBottom: 500}}>
+                <Button
+                    title="Load more"
+                    onPress={this.loadMoreData}
+                />
+</View>
             </ScrollView>
+
             </View>
         )
     }
@@ -96,7 +120,6 @@ function mapStateToProps(state) {
         isFetching: state.crypto.isFetching,
         filters: state.filters,
         cryptoCoins: filterData(data, state.filters)
-      //  cryptoCoins: data !== null ? data.filter((coin) => coin.name.toLowerCase().includes((searchItem).toLowerCase()) || coin.symbol.toLowerCase().includes((searchItem).toLowerCase())) : []
     }
 }
 
