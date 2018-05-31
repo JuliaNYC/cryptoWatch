@@ -119,7 +119,8 @@ function mapStateToProps(state) {
     return {
         isFetching: state.crypto.isFetching,
         filters: state.filters,
-        cryptoCoins: filterData(data, state.filters)
+        //cryptoCoins: data
+         cryptoCoins: filterData(data, state.filters)
     }
 }
 
