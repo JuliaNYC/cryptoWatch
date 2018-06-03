@@ -3,9 +3,8 @@ import {View, Text, StyleSheet} from "react-native";
 import CryptoIcon from "react-native-crypto-icons";
 import {colors} from "../../utils/Constants";
 
-const CryptoCoinSummary = ({infos}) => {
-
-    const {name, symbol, price_usd, percent_change_24h, percent_change_7d,} = infos;
+const CryptoCoinSummary = ({cryptoCoin}) => {
+    const {name, symbol, price_usd, percent_change_24h, percent_change_7d} = cryptoCoin;
     const color = colors[Math.floor(Math.random() * colors.length)];
 
     return (

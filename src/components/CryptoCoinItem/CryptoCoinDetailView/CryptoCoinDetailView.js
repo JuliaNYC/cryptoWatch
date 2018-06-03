@@ -3,9 +3,9 @@ import { View } from "react-native";
 import Chart from "./Chart";
 import CryptoCoinInfo from "./Info";
 
-const CryptoCoinDetailView = ({infos}) => {
-    console.warn("infos", infos)
-    const {percent_change_1h, percent_change_24h, percent_change_7d, total_supply, max_supply, available_supply} = infos;
+const CryptoCoinDetailView = ({cryptoCoin}) => {
+
+    const {percent_change_1h, percent_change_24h, percent_change_7d, total_supply, max_supply, available_supply} = cryptoCoin;
 
         return <View>
             <CryptoCoinInfo

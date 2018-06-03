@@ -49,7 +49,7 @@ export default class CryptoItem extends React.Component {
         return (
             <View style={itemContainer}>
                 <CryptoItemSummary
-                    infos={this.props.infos}
+                    cryptoCoin={this.props.cryptoCoin}
                 />
 
                 <View style={button}>
@@ -58,7 +58,7 @@ export default class CryptoItem extends React.Component {
 
                 {this.state.showDetailView ?
                     <CryptoCoinDetailView
-                        infos={this.props.infos}
+                        cryptoCoin={this.props.cryptoCoin}
                         showDetailView={this.state.showDetailView}/>
                     : null
                 }
@@ -81,3 +81,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'pink'
     }
 })
+
+
+
