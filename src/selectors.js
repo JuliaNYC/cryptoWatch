@@ -3,14 +3,11 @@ export default (coins, {text, sortBy}) => {
     console.warn("BEFORE", coins, typeof text)
     //if (coins) {
 
-        return coins.filter(coin => {
-            return coin.name.toLowerCase().includes(text.toLowerCase().trim()) || coin.symbol.toLowerCase().includes(text.toLowerCase().trim());
-            /*const filtereCoins = text != "" ? coin.name.toLowerCase().includes(text.toLowerCase()) || coin.symbol.toLowerCase().includes(text.toLowerCase());
-            return filtereCoins;*/
-        })
-         /*   .sort((coin1, coin2) => {
-        return parseInt(coin1.price_usd) > parseInt(coin2.price_usd) ? -1 : 1;})*/
-.sort((coin1, coin2) => {
+    return coins.filter(coin => {
+        return coin.name.toLowerCase().includes(text.toLowerCase().trim()) || coin.symbol.toLowerCase().includes(text.toLowerCase().trim());
+    })
+
+        .sort((coin1, coin2) => {
 
 
             if (sortBy === 'sortByLowestPrice') {

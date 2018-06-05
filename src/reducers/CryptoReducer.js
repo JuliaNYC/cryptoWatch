@@ -12,9 +12,6 @@ const initialState = {
 
 export default function (state = initialState, action) {
 
-
-    console.warn("action payload", action.payload, "state.data--->", state.data)
-    console.log("actions", action)
     switch (action.type) {
         case FETCHING_COIN_DATA:
             return {
