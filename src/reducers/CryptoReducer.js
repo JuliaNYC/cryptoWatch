@@ -5,13 +5,14 @@ import {
 
 const initialState = {
     isFetching: null,
-    data: [],
+  /*  data: [],*/
+    data: {},
     hasError: false,
     errorMsg: null
 }
 
 export default function (state = initialState, action) {
-
+console.warn("reducer", action.payload)
     switch (action.type) {
         case FETCHING_COIN_DATA:
             return {
@@ -23,7 +24,9 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 isFetching: false,
-                data: [...state.data, ...action.payload],
+               /* data: action.payload,*/
+                data: {...state.data, ...action.payload},
+                /*data: [...state.data, ...action.payload],*/
                 hasError: false
               //  errorMsg: null
             }

@@ -27,6 +27,7 @@ export const fetchCoinData = (startPoint, sortBy) => {
     }
 }*/
 
+/*
 
 export const fetchCoinData = () => {
     return dispatch => {
@@ -45,5 +46,43 @@ export const fetchCoinData = () => {
         );
 
 
+    }
+}*/
+/*
+export const fetchCoinData = () => {
+    return dispatch => {
+        const promises = [];
+
+        dispatch({type: FETCHING_COIN_DATA})
+
+        for (var i = 0; i < 3; i++) {
+            const start = i === 0 ? 0 : (i + "01");
+            let getData = axios.get(`${api_root_url}/v1/ticker?start=${start}`)
+                .then(res => {
+                    dispatch({type: FETCH_COIN_DATA_SUCESS, payload: res.data})
+                })
+                .catch(err => {
+                    dispatch({type: FETCH_COIN_DATA_ERR, payload: err.data})
+                })
+            promises.push(getData)
+        }
+        return Promise.all(promises)
+    }
+}*/
+
+export const fetchCoinData = (startPoint, sortBy) => {
+    console.warn("startPoint", startPoint, sortBy)
+    return dispatch => {
+        dispatch({type: FETCHING_COIN_DATA})
+        return axios.get(`${api_root_url}/v2/ticker/?start=${startPoint}&limit=10`)
+            .then(res => {
+                console.warn("action date", res.data.data)
+                dispatch({type: FETCH_COIN_DATA_SUCESS, payload: res.data.data})
+            })
+
+            .catch(err => {
+                console.log("err------ here >", err)
+                dispatch({type: FETCH_COIN_DATA_ERR, payload: err.data})
+            })
     }
 }

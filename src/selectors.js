@@ -3,8 +3,11 @@ export default (coins, {text, sortBy}) => {
     console.warn("BEFORE", coins, typeof text)
     //if (coins) {
 
-    return coins.filter(coin => {
-        return coin.name.toLowerCase().includes(text.toLowerCase().trim()) || coin.symbol.toLowerCase().includes(text.toLowerCase().trim());
+    return Object.values(coins).filter(coin => {
+        console.log("coin", coin)
+        console.warn("trim", coin.name, coin.symbol)
+       // return coin.name.toLowerCase().includes(text.toLowerCase().trim()) || coin.symbol.toLowerCase().includes(text.toLowerCase().trim());
+      return coin.name.toLowerCase().includes(text.toLowerCase().trim()) || coin.symbol.toLowerCase().includes(text.toLowerCase().trim());
     })
 
         .sort((coin1, coin2) => {
