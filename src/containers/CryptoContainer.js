@@ -87,7 +87,6 @@ class CryptoContainer extends React.Component {
                     <View>
                         <Spinner
                             visible={this.props.isFetching}
-                           /* textContent={"Loading..."}*/
                             animation="fade"
                         />
                     </View>
