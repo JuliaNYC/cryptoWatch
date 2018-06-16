@@ -1,18 +1,19 @@
 import {
     FETCHING_COIN_DATA,
     FETCH_COIN_DATA_SUCESS,
-    FETCH_COIN_DATA_ERR} from "../utils/Constants";
+    FETCH_COIN_DATA_ERR,
+    RESET_STATE} from "../utils/Constants";
 
 const initialState = {
     isFetching: null,
-  /*  data: [],*/
-    data: {},
+    data: [],
+/*    data: {},*/
     hasError: false,
     errorMsg: null
 }
 
 export default function (state = initialState, action) {
-console.warn("reducer", action.payload)
+console.warn("reducer", action.payload, "initialState", initialState)
     switch (action.type) {
         case FETCHING_COIN_DATA:
             return {
@@ -24,9 +25,8 @@ console.warn("reducer", action.payload)
             return {
                 ...state,
                 isFetching: false,
-               /* data: action.payload,*/
-                data: {...state.data, ...action.payload},
-                /*data: [...state.data, ...action.payload],*/
+               /* data: {...state.data, ...action.payload},*/
+                data: [...state.data, ...action.payload],
                 hasError: false
               //  errorMsg: null
             }
@@ -39,6 +39,8 @@ console.warn("reducer", action.payload)
                 hasError: true,
                 errorMsg: action.err
             }
+        case RESET_STATE:
+            return {...state, data:[]}
 
         default:
             return state;

@@ -3,7 +3,6 @@ import {View, Button, StyleSheet} from "react-native";
 
 import CryptoCoinDetailView from "./CryptoCoinDetailView/CryptoCoinDetailView";
 import CryptoItemSummary from "./CryptoItemSummary";
-/*import Button from "../Button";*/
 import Spinner from "react-native-loading-spinner-overlay";
 
 export default class CryptoItem extends React.Component {
@@ -47,7 +46,7 @@ export default class CryptoItem extends React.Component {
         const {itemContainer, button} = styles;
 
         return (
-            <View style={itemContainer}>
+            <View >
                 <CryptoItemSummary
                     cryptoCoin={this.props.cryptoCoin}
                 />

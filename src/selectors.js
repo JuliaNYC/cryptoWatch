@@ -1,11 +1,9 @@
-// export default (coins, {text, sortBy}) => {
 export default (coins, {text, sortBy}) => {
     console.warn("BEFORE", coins, typeof text)
     //if (coins) {
 
-    return Object.values(coins).filter(coin => {
-        console.log("coin", coin)
-        console.warn("trim", coin.name, coin.symbol)
+    // return Object.values(coins).filter(coin => {
+    return coins.filter(coin => {
        // return coin.name.toLowerCase().includes(text.toLowerCase().trim()) || coin.symbol.toLowerCase().includes(text.toLowerCase().trim());
       return coin.name.toLowerCase().includes(text.toLowerCase().trim()) || coin.symbol.toLowerCase().includes(text.toLowerCase().trim());
     })
