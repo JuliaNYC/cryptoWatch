@@ -36,7 +36,7 @@ class CryptoContainer extends React.Component {
          })*/
     }
 
-    keyExtractor = (item, index) => item.id;
+    keyExtractor = (item, index) => item.id.toString();
 
     renderItem = ({item}) => (
         <CryptoItem
@@ -117,7 +117,6 @@ class CryptoContainer extends React.Component {
 }
 
 mapStateToProps = state => {
-    console.warn("state", state, state.crypto)
     const {data} = state.crypto;
     return {
         isFetching: state.crypto.isFetching,

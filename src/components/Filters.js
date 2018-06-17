@@ -5,7 +5,7 @@ import {
 } from "react-native";
 
 const Filters = ({sortBy,pageCounter, fetchCoinData, resetState, resetPageToOne,  setInitialFilter}) => {
-    console.warn("filters--->", pageCounter)
+
     return (
         <View>
            {/* <Button

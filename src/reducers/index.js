@@ -1,13 +1,10 @@
-import {combineReducers} from "redux";
+import {combineReducers} from 'redux';
 import CryptoReducer from "./CryptoReducer";
 import FilterReducer from './FilterReducer';
-
-/*export default combineReducers({
-    crypto:CryptoReducer
-})*/
-
+import AuthReducer from './AuthReducer';
 
 export default combineReducers({
     crypto: CryptoReducer,
-    filters: FilterReducer
+    filters: FilterReducer,
+    auth: AuthReducer
 });

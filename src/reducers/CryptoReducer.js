@@ -12,8 +12,7 @@ const initialState = {
     errorMsg: null
 }
 
-export default function (state = initialState, action) {
-console.warn("reducer", action.payload, "initialState", initialState)
+export default (state = initialState, action) => {
     switch (action.type) {
         case FETCHING_COIN_DATA:
             return {

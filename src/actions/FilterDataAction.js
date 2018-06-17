@@ -9,7 +9,6 @@ const initialState = {
 
 
 export const searchCoins = (text) => {
-    console.warn("action filterResults", text)
         return dispatch => {
             dispatch({
                 type: FILTER_TEXT,
