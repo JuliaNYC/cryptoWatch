@@ -12,13 +12,18 @@ import {
     ScrollView
 } from "react-native";
 
-import {emailChanged} from "../actions/AuthAction";
+import {emailChanged, passwordChanged} from "../actions/AuthAction";
 
 
 class LoginFormContainer extends React.Component {
     onEmailChange = (text) => {
         this.props.emailChanged(text)
     }
+
+    onPasswordChange = (text) => {
+        this.props.passwordChanged(text)
+    }
+
     render () {
         return (
             <View>
@@ -31,6 +36,8 @@ class LoginFormContainer extends React.Component {
                 <TextInput
                     style={{height: 40, borderColor: 'gray', borderWidth: 1}}
                     placeholder="password"
+                    onChangeText={this.onPasswordChange}
+                    value={this.props.password}
                 />
                 <Button
                     title="Log In"
@@ -46,4 +53,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, {emailChanged})(LoginFormContainer)
+export default connect(mapStateToProps, {emailChanged, passwordChanged})(LoginFormContainer)

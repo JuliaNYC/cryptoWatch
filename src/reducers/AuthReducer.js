@@ -1,5 +1,5 @@
 import {
-    EMAIL_CHANGED} from "../utils/Constants";
+    EMAIL_CHANGED, PASSWORD_CHANGED} from "../utils/Constants";
 
 const initialState = {
     email: ""
@@ -8,7 +8,9 @@ const initialState = {
 export default (state = initialState, action) => {
     switch(action.type) {
         case EMAIL_CHANGED:
-            return {...state, email: action.payload}
+            return {...state, email: action.payload};
+        case PASSWORD_CHANGED:
+            return {...state, email: action.payload};
         default:
             return state;
     };
