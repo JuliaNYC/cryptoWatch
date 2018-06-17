@@ -5,7 +5,6 @@ import {
     Text,
     TextInput,
     Button,
-    FlatList,
     ActivityIndicator,
     StyleSheet, Platform,
     TouchableOpacity,
@@ -27,6 +26,16 @@ class LoginFormContainer extends React.Component {
         const {email, password} = this.props;
         this.props.loginUser({email, password})
     }
+    renderError = () => {
+    if (this.props.error) {
+        return (
+            <View>
+                <Text style={{color: "red"}}>{this.props.error}</Text>
+            </View>
+        )
+    }
+    }
+
     render () {
         console.warn("render password", this.props.password)
         return (
@@ -43,6 +52,9 @@ class LoginFormContainer extends React.Component {
                     onChangeText={this.onPasswordChange}
                     value={this.props.password}
                 />
+                
+                {this.renderError()}
+
                 <Button
                     title="Log In"
                     onPress={this.onLogin}
@@ -55,7 +67,8 @@ class LoginFormContainer extends React.Component {
 const mapStateToProps = state => {
     return {
         email: state.auth.email,
-        password: state.auth.password
+        password: state.auth.password,
+        error: state.auth.error
     }
 }
 
