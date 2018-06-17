@@ -34,7 +34,7 @@ export default class App extends Component<Props> {
                 <View style={styles.container}>
                     <Header/>
                     <LoginFormContainer/>
-                    <CryptoContainer/>
+                  {/*  <CryptoContainer/>*/}
                 </View>
             </Provider>
         );

@@ -85,10 +85,11 @@ class CryptoContainer extends React.Component {
             <View style={styles.container}>
                 {this.props.isFetching ?
                     <View>
-                        <Spinner
+                        <ActivityIndicator size="large" color="#0000ff" />
+                       {/* <Spinner
                             visible={this.props.isFetching}
                             animation="fade"
-                        />
+                        />*/}
                     </View>
                     : null
                 }
@@ -125,6 +126,7 @@ mapStateToProps = state => {
 
     }
 }
+
 
 export default connect(mapStateToProps, {fetchCoinData, searchCoins, sortBy, resetState})(CryptoContainer)
 

@@ -1,6 +1,7 @@
 import {
     EMAIL_CHANGED,
     PASSWORD_CHANGED,
+    REQUEST_LOGIN_USER,
     LOGIN_USER_SUCCESS,
     LOGIN_USER_FAIL
 } from "../utils/Constants.js";
@@ -22,6 +23,7 @@ export const passwordChanged = (text) => {
 
 export const loginUser = ({email, password}) => {
     return (dispatch) => {
+        dispatch({type: REQUEST_LOGIN_USER});
         firebase.auth().signInWithEmailAndPassword(email, password)
             .then((user) => loginUserSuccess(dispatch, user))
             .catch(() => {

@@ -10,7 +10,7 @@ import {
     TouchableOpacity,
     ScrollView
 } from "react-native";
-
+import Spinner from "react-native-loading-spinner-overlay";
 import {emailChanged, passwordChanged, loginUser} from "../actions/AuthAction";
 
 
@@ -26,6 +26,7 @@ class LoginFormContainer extends React.Component {
         const {email, password} = this.props;
         this.props.loginUser({email, password})
     }
+
     renderError = () => {
     if (this.props.error) {
         return (
@@ -34,10 +35,23 @@ class LoginFormContainer extends React.Component {
             </View>
         )
     }
+
+    }
+
+    renderButton = () => {
+        if (this.props.isFetchingUser) {
+            return <ActivityIndicator size="large" color="#0000ff" />
+        }
+        return (
+            <Button
+                title="Log In"
+                onPress={this.onLogin}
+            />
+        )
     }
 
     render () {
-        console.warn("render password", this.props.password)
+        console.warn("render password", this.props.isFetchingUser)
         return (
             <View>
                 <TextInput
@@ -52,23 +66,22 @@ class LoginFormContainer extends React.Component {
                     onChangeText={this.onPasswordChange}
                     value={this.props.password}
                 />
-                
-                {this.renderError()}
-
-                <Button
-                    title="Log In"
-                    onPress={this.onLogin}
-                />
+                <Text>
+                    {this.renderError()}
+                </Text>
+                {this.renderButton()}
             </View>
         )
     }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = ({auth}) => {
+    const {email, password, isFetchingUser, errorMsg} = auth;
     return {
-        email: state.auth.email,
-        password: state.auth.password,
-        error: state.auth.error
+        email,
+        password,
+        isFetchingUser,
+        error: errorMsg
     }
 }
 
