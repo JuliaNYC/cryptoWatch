@@ -11,7 +11,7 @@ import CryptoContainer from "./src/containers/CryptoContainer";
 import LoginFormContainer from "./src/containers/LoginFormContainer";
 import Header from "./src/components/Header";
 import Store from './src/Store';
-
+import RouterWrapper from "./src/RouterWrapper";
 
 type Props = {};
 export default class App extends Component<Props> {
@@ -31,11 +31,13 @@ export default class App extends Component<Props> {
     render() {
         return (
             <Provider store={Store}>
-                <View style={styles.container}>
-                    <Header/>
-                    <LoginFormContainer/>
-                  {/*  <CryptoContainer/>*/}
-                </View>
+              {/*  <View style={styles.container}>*/}
+                    <RouterWrapper />
+                   {/* <Header/>*/}
+                 {/*   <RouterWrapper />*/}
+         {/*           <Header/>
+                    <CryptoContainer/>*/}
+              {/*  </View>*/}
             </Provider>
         );
     }
@@ -48,3 +50,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#F5FCFF',
     }
 });
+
+{/*       <Header/>
+                    <LoginFormContainer/>*/}
+{/*  <CryptoContainer/>*/}

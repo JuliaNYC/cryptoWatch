@@ -53,7 +53,7 @@ class LoginFormContainer extends React.Component {
     render () {
         console.warn("render password", this.props.isFetchingUser)
         return (
-            <View>
+            <View style={styles.container}>
                 <TextInput
                     style={{height: 40, borderColor: 'gray', borderWidth: 1}}
                     placeholder="email@email.com"
@@ -86,3 +86,11 @@ const mapStateToProps = ({auth}) => {
 }
 
 export default connect(mapStateToProps, {emailChanged, passwordChanged, loginUser})(LoginFormContainer)
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        alignItems: 'center',
+        backgroundColor: '#F5FCFF',
+    }
+});
