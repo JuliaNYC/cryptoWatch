@@ -1,16 +1,13 @@
 import React from "react";
 import {
     View,
-    Text,
     TextInput,
-    Button,
-    ActivityIndicator,
     StyleSheet
 } from "react-native";
 
 import {Icon} from 'react-native-elements'
 
-const LoginWithEmailPassword = ({email, password, onEmailChange, onPasswordChange}) => {
+const LoginOrSignupWithEmail = ({email, password, onEmailChange, onPasswordChange}) => {
     const {inputWrapper, input} = styles;
     return (
         <View>
@@ -41,7 +38,7 @@ const LoginWithEmailPassword = ({email, password, onEmailChange, onPasswordChang
     )
 }
 
-export default LoginWithEmailPassword;
+export default LoginOrSignupWithEmail;
 
 const styles = StyleSheet.create({
     inputWrapper: {

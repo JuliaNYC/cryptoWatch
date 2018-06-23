@@ -7,10 +7,15 @@ import {
     ActivityIndicator,
     StyleSheet
 } from "react-native";
-import {emailChanged, passwordChanged, loginUser} from "../actions/AuthAction";
-import LoginWithEmailPassword from "../components/LoginWithEmailPassword";
+
+import {emailChanged, passwordChanged, loginUser, signUpUser} from "../actions/AuthAction";
+import LoginOrSignupWithEmail from "../components/LoginOrSignupWithEmail";
 
 class LoginFormContainer extends React.Component {
+    state = {
+        showLoginForm: true
+    };
+
     onEmailChange = (text) => {
         this.props.emailChanged(text)
     }
@@ -21,6 +26,24 @@ class LoginFormContainer extends React.Component {
     onLogin = () => {
         const {email, password} = this.props;
         this.props.loginUser({email, password})
+    }
+
+    onSignup = () => {
+        const {email, password} = this.props;
+        this.props.signUpUser({email, password})
+    }
+
+    renderButton = () => {
+        if (this.props.isFetchingUser) {
+            return <ActivityIndicator size="large" color="#5ac6dd"/>
+        }
+        return (
+            <Button
+                title="Submit"
+                color="white"
+                onPress={this.state.showLoginForm ? this.onLogin : this.onSignup}
+            />
+        )
     }
 
     renderError = () => {
@@ -36,40 +59,40 @@ class LoginFormContainer extends React.Component {
                 </View>
             )
         }
-
-    }
-
-    renderButton = () => {
-        if (this.props.isFetchingUser) {
-            return <ActivityIndicator size="large" color="#5ac6dd"/>
-        }
-        return (
-            <View style={styles.loginButton}>
-                <Button
-                    title="Log In"
-                    color="white"
-                    onPress={this.onLogin}
-                />
-            </View>
-        )
     }
 
     render() {
+        const {showLoginForm} = this.state;
+
         return (
             <View style={styles.container}>
-                <LoginWithEmailPassword
+
+                <Text>{showLoginForm ? "Please Log In" : "Please Sign Up"}</Text>
+
+                <LoginOrSignupWithEmail
                     email={this.props.email}
                     password={this.props.password}
                     onEmailChange={this.onEmailChange}
                     onPasswordChange={this.onPasswordChange}
                 />
+
+                <View style={styles.loginButton}>
+                    {this.renderButton()}
+                </View>
+
+                <View style={styles.loginSignUpNavigation}>
+                    <Button
+                        title={showLoginForm ? "Go Sign Up" : "Go Log In"}
+                        color="white"
+                        onPress={() => this.setState({showLoginForm: !showLoginForm})}
+                    />
+                </View>
+
                 <Text>
                     {this.renderError()}
                 </Text>
-                {this.renderButton()}
+
             </View>
-
-
         )
     }
 }
@@ -84,7 +107,8 @@ const mapStateToProps = ({auth}) => {
     }
 }
 
-export default connect(mapStateToProps, {emailChanged, passwordChanged, loginUser})(LoginFormContainer)
+export default connect(mapStateToProps,
+    {emailChanged, passwordChanged, loginUser, signUpUser})(LoginFormContainer)
 
 const styles = StyleSheet.create({
 
@@ -96,6 +120,11 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         width: "80%",
         height: 40,
-        marginLeft: 30
+        marginLeft: 30,
+        marginTop: 10
+    },
+    loginSignUpNavigation: {
+        backgroundColor: "#99ff52",
+        marginTop: 40
     }
-});
+})
