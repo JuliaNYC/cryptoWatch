@@ -3,13 +3,15 @@ import {
     PASSWORD_CHANGED,
     REQUEST_LOGIN_USER,
     LOGIN_USER_SUCCESS,
-    LOGIN_USER_FAIL} from "../utils/Constants";
+    LOGIN_USER_FAIL,
+    IS_USER_LOGGED_IN } from "../utils/Constants";
 
 const initialState = {
     email: "",
     password: "",
     isFetchingUser: false,
     user: null,
+    loggedIn: false,
     errorMsg: ""
 }
 
@@ -25,7 +27,9 @@ export default (state = initialState, action) => {
         case LOGIN_USER_SUCCESS:
             return {...state, user: action.payload, isFetchingUser: false, errorMsg: ""}
         case LOGIN_USER_FAIL:
-            return {...state,  isFetchingUser: false, errorMsg: "Authentication failed"}
+            return {...state,  isFetchingUser: false, errorMsg: "Authentication failed"};
+            case IS_USER_LOGGED_IN:
+        return {...state, loggedIn: true}
         default:
             return state;
     };

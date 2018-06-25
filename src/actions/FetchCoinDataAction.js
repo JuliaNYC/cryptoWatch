@@ -12,8 +12,9 @@ import {
        /* console.warn("startPoint", startPoint, initialSortBy, sortBy)*/
         return dispatch => {
             const sortParam = initialSortBy === undefined ? "rank" : initialSortBy;
+            const start = startPoint === 0 ? 0 : `${startPoint}1`;
             dispatch({type: FETCHING_COIN_DATA})
-            return axios.get(`${api_root_url}/v2/ticker/?start=${startPoint}&limit=10&sort=${sortParam}&structure=array`)
+            return axios.get(`${api_root_url}/v2/ticker/?start=${start}1&limit=10&sort=${sortParam}&structure=array`)
 
                 .then(res => {
                    /* console.warn("action date", res.data)*/

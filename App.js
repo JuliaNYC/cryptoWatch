@@ -7,14 +7,12 @@ import {
 } from 'react-native';
 import firebase from 'firebase';
 import {Provider} from 'react-redux';
-import CryptoContainer from "./src/containers/CryptoContainer";
-import LoginFormContainer from "./src/containers/LoginFormContainer";
-import Header from "./src/components/Header";
 import Store from './src/Store';
 import RouterWrapper from "./src/RouterWrapper";
 
 type Props = {};
 export default class App extends Component<Props> {
+
     componentWillMount() {
         const config = {
             apiKey: "AIzaSyBeTKRak354YzYxVucC4jkT1IRnI8TCt3I",
@@ -26,18 +24,13 @@ export default class App extends Component<Props> {
 
         }
         firebase.initializeApp(config)
+
     }
 
     render() {
         return (
             <Provider store={Store}>
-              {/*  <View style={styles.container}>*/}
                     <RouterWrapper />
-                   {/* <Header/>*/}
-                 {/*   <RouterWrapper />*/}
-         {/*           <Header/>
-                    <CryptoContainer/>*/}
-              {/*  </View>*/}
             </Provider>
         );
     }
@@ -50,7 +43,3 @@ const styles = StyleSheet.create({
         backgroundColor: '#F5FCFF',
     }
 });
-
-{/*       <Header/>
-                    <LoginFormContainer/>*/}
-{/*  <CryptoContainer/>*/}

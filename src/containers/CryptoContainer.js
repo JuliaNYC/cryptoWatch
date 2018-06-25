@@ -17,23 +17,19 @@ import {fetchCoinData, resetState} from "../actions/FetchCoinDataAction";
 import {searchCoins, sortBy} from "../actions/FilterDataAction";
 import {SearchBar} from 'react-native-elements'
 import Spinner from "react-native-loading-spinner-overlay";
-
-
 import filterData from '../selectors';
 
 class CryptoContainer extends React.Component {
 
     state = {
         page: 0,
-        sortedBy: undefined
+        sortedBy: undefined,
+        isOpen: false
     }
 
     componentDidMount() {
         this.props.fetchCoinData(0)
         this.setPage()
-        /* this.setState({
-             page: this.state.page +1
-         })*/
     }
 
     keyExtractor = (item, index) => item.id.toString();
@@ -70,26 +66,20 @@ class CryptoContainer extends React.Component {
     }
 
     loadMoreData = () => {
-        this.props.fetchCoinData(this.state.page + "1", this.state.sortedBy);
-        /* this.setState({
-             page: this.state.page +1
-         })*/
+        this.props.fetchCoinData(this.state.page, this.state.sortedBy);
         this.setPage()
     }
 
     render() {
-
-
         return (
-
             <View style={styles.container}>
                 {this.props.isFetching ?
                     <View>
                         <ActivityIndicator size="large" color="#0000ff" />
-                       {/* <Spinner
+                        <Spinner
                             visible={this.props.isFetching}
                             animation="fade"
-                        />*/}
+                        />
                     </View>
                     : null
                 }

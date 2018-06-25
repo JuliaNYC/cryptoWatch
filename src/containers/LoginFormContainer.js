@@ -50,12 +50,7 @@ class LoginFormContainer extends React.Component {
         if (this.props.error) {
             return (
                 <View>
-                    <Text style={{
-                        color: "red",
-                        marginLeft: 100,
-                        marginTop: 25,
-                        marginBottom: 10
-                    }}>{this.props.error}</Text>
+                    <Text style={styles.errorMsg}>{this.props.error}</Text>
                 </View>
             )
         }
@@ -105,7 +100,7 @@ const mapStateToProps = ({auth}) => {
         isFetchingUser,
         error: errorMsg
     }
-}
+};
 
 export default connect(mapStateToProps,
     {emailChanged, passwordChanged, loginUser, signUpUser})(LoginFormContainer)
@@ -126,5 +121,11 @@ const styles = StyleSheet.create({
     loginSignUpNavigation: {
         backgroundColor: "#99ff52",
         marginTop: 40
+    },
+    errorMsg: {
+        color: "red",
+        marginLeft: 100,
+        marginTop: 25,
+        marginBottom: 10
     }
 })
