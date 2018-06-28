@@ -8,11 +8,20 @@ class Loading extends React.Component {
 
     componentDidMount () {
         this.props.isUserLoggedIn()
+          /*  if (this.props.loggedIn) {
+                this.props.navigation.navigate('home')
+            } else {
+                this.props.navigation.navigate('login')
+            }*/
+
+
     }
     render() {
+        console.warn("isUserLoggedIn", this.props.loggedIn)
         return (
             <View style={styles.container}>
                 <ActivityIndicator size="large" />
+                <Text>I am loading your app</Text>
             </View>
         )
     }
@@ -25,6 +34,11 @@ const styles = StyleSheet.create({
     }
 })
 
+const mapStateToProps = ({auth}) => {
+    return {
+        loggedIn:auth.loggedIn
+    }
+};
 
 
-export default connect(null, {isUserLoggedIn})(Loading)
+export default connect(mapStateToProps, {isUserLoggedIn})(Loading)

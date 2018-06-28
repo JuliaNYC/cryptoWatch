@@ -4,7 +4,9 @@ import {
     REQUEST_LOGIN_USER,
     LOGIN_USER_SUCCESS,
     LOGIN_USER_FAIL,
-    IS_USER_LOGGED_IN } from "../utils/Constants";
+    LOGOUT_USER_SUCCESS,
+    IS_USER_LOGGED_IN
+} from "../utils/Constants";
 
 const initialState = {
     email: "",
@@ -16,8 +18,8 @@ const initialState = {
 }
 
 export default (state = initialState, action) => {
-    console.warn("reducer", state.isFetchingUser)
-    switch(action.type) {
+    console.warn("reducer", state.user)
+    switch (action.type) {
         case EMAIL_CHANGED:
             return {...state, email: action.payload};
         case PASSWORD_CHANGED:
@@ -27,10 +29,13 @@ export default (state = initialState, action) => {
         case LOGIN_USER_SUCCESS:
             return {...state, user: action.payload, isFetchingUser: false, errorMsg: ""}
         case LOGIN_USER_FAIL:
-            return {...state,  isFetchingUser: false, errorMsg: "Authentication failed"};
-            case IS_USER_LOGGED_IN:
-        return {...state, loggedIn: true}
+            return {...state, isFetchingUser: false, errorMsg: "Authentication failed"};
+        case IS_USER_LOGGED_IN:
+            return {...state, loggedIn: true}
+        case LOGOUT_USER_SUCCESS:
+            return {...state, loggedIn: false, user: null, isFetchingUser: false}
         default:
             return state;
-    };
+    }
+    ;
 }

@@ -16,7 +16,6 @@ import {
 } from "../utils/Constants.js";
 import {Actions} from 'react-native-router-flux';
 import firebase from "firebase";
-import {NavigationActions} from 'react-navigation'
 
 export const emailChanged = (text) => {
     return {
@@ -56,9 +55,7 @@ const loginUserSuccess = (dispatch, user) => {
         type: LOGIN_USER_SUCCESS,
         payload: user
     })
-    dispatch(NavigationActions.navigate({
-        routeName: 'home',
-    }));
+    Actions.main()
 }
 
 const loginUserFail = (dispatch) => {
@@ -67,19 +64,16 @@ const loginUserFail = (dispatch) => {
     })
 }
 
-export const isUserLoggedIn = () => {
+export const isUserLoggedIn = (props) => {
     return (dispatch) => {
         dispatch({type: IS_USER_LOGGED_IN})
         firebase.auth().onAuthStateChanged(user => {
             console.warn("userr", user)
             if (user) {
-                dispatch(NavigationActions.navigate({
-                    routeName: 'home',
-                }));
+                Actions.main()
             } else {
-                dispatch(NavigationActions.navigate({
-                    routeName: 'login',
-                }));
+                Actions.auth()
+
             }
         })
     }
@@ -89,7 +83,7 @@ export const isUserLoggedIn = () => {
 export const logoutUser = () => {
     return (dispatch) => {
         dispatch({type: REQUEST_LOGOUT_USER})
-        firebase.auth().signOut()
+        return firebase.auth().signOut()
             .then(() => {
                 dispatch({
                     type: LOGOUT_USER_SUCCESS

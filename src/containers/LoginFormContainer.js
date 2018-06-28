@@ -93,6 +93,7 @@ class LoginFormContainer extends React.Component {
 }
 
 const mapStateToProps = ({auth}) => {
+    console.warn("auth----->", auth.user)
     const {email, password, isFetchingUser, errorMsg} = auth;
     return {
         email,
