@@ -1,23 +1,14 @@
 import React from 'react'
-import { View, Text, ActivityIndicator, StyleSheet } from 'react-native'
 import {connect} from "react-redux";
-
+import { View, Text, ActivityIndicator, StyleSheet } from 'react-native'
 import {isUserLoggedIn} from "../actions/AuthAction";
 
 class Loading extends React.Component {
 
     componentDidMount () {
         this.props.isUserLoggedIn()
-          /*  if (this.props.loggedIn) {
-                this.props.navigation.navigate('home')
-            } else {
-                this.props.navigation.navigate('login')
-            }*/
-
-
     }
     render() {
-        console.warn("isUserLoggedIn", this.props.loggedIn)
         return (
             <View style={styles.container}>
                 <ActivityIndicator size="large" />
@@ -34,11 +25,4 @@ const styles = StyleSheet.create({
     }
 })
 
-const mapStateToProps = ({auth}) => {
-    return {
-        loggedIn:auth.loggedIn
-    }
-};
-
-
-export default connect(mapStateToProps, {isUserLoggedIn})(Loading)
+export default connect(null, {isUserLoggedIn})(Loading)

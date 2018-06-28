@@ -10,29 +10,26 @@ import {
     TouchableOpacity,
     ScrollView
 } from "react-native";
+import {SearchBar} from 'react-native-elements'
+import Spinner from "react-native-loading-spinner-overlay";
 
 import CryptoItem from "../components/CryptoCoinItem/CryptoItem";
 import Filters from "../components/Filters";
 import {fetchCoinData, resetState} from "../actions/FetchCoinDataAction";
 import {searchCoins, sortBy} from "../actions/FilterDataAction";
-import {SearchBar} from 'react-native-elements'
-import Spinner from "react-native-loading-spinner-overlay";
 import filterData from '../selectors';
 
 class CryptoContainer extends React.Component {
 
     state = {
         page: 0,
-        sortedBy: undefined,
-        isOpen: false
+        sortedBy: undefined
     }
 
     componentDidMount() {
-        this.props.fetchCoinData(0)
+        this.props.fetchCoinData(this.state.page);
         this.setPage()
     }
-
-    keyExtractor = (item, index) => item.id.toString();
 
     renderItem = ({item}) => (
         <CryptoItem
@@ -41,14 +38,20 @@ class CryptoContainer extends React.Component {
         />
 
     );
-    resetPageToOne = () => {
-        this.setState({
-            page: 1
-        })
-    }
+
+    keyExtractor = (item, index) => item.id.toString();
+
     setPage = () => {
         this.setState({
             page: this.state.page + 1
+        })
+    }
+
+    //needed for filters - after initial fetching (count===0) based on filter param, count must be 1
+    //because this.setState.. happens inside here, not filter omponent
+    resetPageToOne = () => {
+        this.setState({
+            page: 1
         })
     }
 
@@ -76,10 +79,10 @@ class CryptoContainer extends React.Component {
                 {this.props.isFetching ?
                     <View>
                         <ActivityIndicator size="large" color="#0000ff" />
-                        <Spinner
+                       {/* <Spinner
                             visible={this.props.isFetching}
                             animation="fade"
-                        />
+                        />*/}
                     </View>
                     : null
                 }
@@ -111,14 +114,13 @@ mapStateToProps = state => {
     const {data} = state.crypto;
     return {
         isFetching: state.crypto.isFetching,
-        filters: state.filters,
         cryptoCoins: filterData(data, state.filters)
 
     }
 }
 
 
-export default connect(mapStateToProps, {fetchCoinData, searchCoins, sortBy, resetState})(CryptoContainer)
+export default connect(mapStateToProps, {fetchCoinData, resetState, searchCoins, sortBy})(CryptoContainer)
 
 
 const styles = StyleSheet.create(
