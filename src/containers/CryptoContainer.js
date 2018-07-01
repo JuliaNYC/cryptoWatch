@@ -79,10 +79,6 @@ class CryptoContainer extends React.Component {
                 {this.props.isFetching ?
                     <View>
                         <ActivityIndicator size="large" color="#0000ff" />
-                       {/* <Spinner
-                            visible={this.props.isFetching}
-                            animation="fade"
-                        />*/}
                     </View>
                     : null
                 }

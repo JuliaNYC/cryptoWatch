@@ -8,30 +8,6 @@ const Filters = ({sortBy,pageCounter, fetchCoinData, resetState, resetPageToOne,
 
     return (
         <View>
-           {/* <Button
-                title="Lowest Price"
-                onPress={() => sortBy('sortByLowestPrice')}
-            />
-            <Button
-                title="Highest Price"
-                onPress={() => sortBy('sortByHighestPrice')}
-            />
-
-            <Button
-                title="Lowest Rank"
-                onPress={() => sortBy('sortByLowestRank')}
-            />
-            <Button
-                title="Highest Rank"
-                onPress={() => sortBy('sortByHighestRank')}
-            />
-            <Button
-                title="VULUME FILTER"
-                onPress={() => {
-                   // const page = pageCounter === 1 ? 0 :pageCounter
-                    fetchCoinData(page, 'volume_24h')
-                }}
-            />*/}
             <Button
                 title="Highest 24 Hrs % Change"
                 onPress={() => {
@@ -58,6 +34,7 @@ const Filters = ({sortBy,pageCounter, fetchCoinData, resetState, resetPageToOne,
                     resetPageToOne()
                 }}
             />
+
         </View>
     )
 }

@@ -9,11 +9,11 @@ import {
 } from 'react-native';
 import {Scene, Router} from "react-native-router-flux";
 import Icon from 'react-native-vector-icons/FontAwesome';
+import FilterAndSearchContainer from "./containers/FilterAndSearchContainer";
 import LoginFormContainer from "./containers/LoginFormContainer";
 import CryptoContainer from "./containers/CryptoContainer";
 import Loading from "./components/Loading";
 import Logout from "./components/Logout";
-
 
 const TabIcon = ({iconName, selected, title, focused}) => (
     <Icon name={iconName} size={30} color={focused ? "#5ac6dd" : "black"}/>
@@ -64,8 +64,19 @@ export const RouterWrapper = () => (
                         component={Logout}
                     />
                 </Scene>
+
+                <Scene
+                    key="search"
+                    iconName='search'
+                    icon={TabIcon}>
+                    <Scene
+                        key="search"
+                        component={FilterAndSearchContainer}
+                    />
+                </Scene>
+
             </Scene>
-          
+
         </Scene>
     </Router>
 );

@@ -1,4 +1,5 @@
 export default (coins, {text, sortBy}) => {
+    console.warn("-----",coins)
     // return Object.values(coins).filter(coin => {
     return coins.filter(coin => {
        // return coin.name.toLowerCase().includes(text.toLowerCase().trim()) || coin.symbol.toLowerCase().includes(text.toLowerCase().trim());
