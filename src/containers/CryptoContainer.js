@@ -31,14 +31,22 @@ class CryptoContainer extends React.Component {
         this.setPage()
     }
 
-    renderItem = ({item}) => (
+/*    renderItem = ({item}) => (
         <CryptoItem
             id={item.id}
             cryptoCoin={item}
         />
 
-    );
+    );*/
+    renderItem = ({item}) => {
+        console.warn("cryptoitemmmm", item)
+        return   <CryptoItem
+            id={item.id}
+            cryptoCoin={item}
+        />
+    }
 
+    
     keyExtractor = (item, index) => item.id.toString();
 
     setPage = () => {

@@ -4,12 +4,12 @@ import Chart from "./Chart";
 import CryptoCoinInfo from "./Info";
 
 const DetailViewWrapper = ({cryptoCoin}) => {
-
-    const {percent_change_1h, percent_change_24h, percent_change_7d, total_supply, max_supply, available_supply} = cryptoCoin;
-
+    const {circulating_supply, total_supply, max_supply, quotes: {USD: {percent_change_1h, percent_change_24h, percent_change_7d}}} = cryptoCoin;
+console.warn("?!?!?!?")
+    // percent_change_1h, percent_change_24h, percent_change_7d, total_supply, max_supply, available_supply,
         return <View>
             <CryptoCoinInfo
-                availableSupply={available_supply}
+                availableSupply={circulating_supply}
                 maxSupply={max_supply}
                 totalSupply={total_supply}
             />

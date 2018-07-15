@@ -1,49 +1,37 @@
-import React from 'react'
-import { BarChart, XAxis } from 'react-native-svg-charts'
-import { View } from 'react-native'
-import * as scale from 'd3-scale'
+import React from "react";
+import { StyleSheet, View } from "react-native";
+import {VictoryChart, VictoryBar, VictoryLabel } from "victory-native";
 
-const Chart = (props) => {
-        const data = [
-            {
-                value: parseInt(props.oneHrs),
-                label: '1 Hour',
-            },
-            {
-                value: parseInt(props.oneDay),
-                label: '24 Hours',
-            },
-            {
-                value: parseInt(props.sevenDays),
-                label: '7 Days',
-            }
-        ]
-
-
-
+export default class Chart extends React.Component {
+    render() {
         return (
-            <View style={{ height: 200, padding: 20 }}>
-                <BarChart
-                    style={{ flex: 1 }}
-                    data={data}
-                    yAccessor={ ({ item }) => item.value }
-                    xAccessor={ ({ item }) => item.label }
+        <View>
+            <VictoryChart
 
-                    gridMin={0}
-                    svg={{ fill: 'rgb(134, 65, 244)' }}
+                style={{
+                    parent: {
+                        width: "60%",
+                    }
+                }}
+                domainPadding={100}
+            >
+                <VictoryBar
+                    style={{ data: { fill: "orange" }, labels: {color: "orange"} }}
+                    labels={(data) => `${data.y} %`}
+                    labelComponent={<VictoryLabel angle={20} dy={(data)=> data.x>0 ? 20 : 20}/>}
+                    data={[{x: "1 Hour", y: this.props.oneHrs}, {x: "24 Hours", y: this.props.oneDay}, {x: "7 Days", y: this.props.sevenDays}]}
                 />
-                <XAxis
-                    style={{ marginTop: 10 }}
-                    data={ data }
-                    xAccessor={({ item }) => item.label}
-                    scale={scale.scaleBand}
-                    formatLabel={(_, index) => data[ index ].label}
-                    labelStyle={ { color: 'black' } }
-                />
+            </VictoryChart>
             </View>
-        )
- //   }
-
+        );
+    }
 }
 
-export default Chart;
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: "center",
+       /* alignItems: "center",*/
+        backgroundColor: "#f5fcff"
+    }
+});

@@ -4,7 +4,7 @@ import CryptoIcon from "react-native-crypto-icons";
 import {colors} from "../../utils/Constants";
 
 const CryptoCoinSummary = ({cryptoCoin}) => {
-    const {name, symbol, price_usd, percent_change_24h, percent_change_7d} = cryptoCoin;
+    const {name, symbol, quotes: {USD: {price, percent_change_24h, percent_change_7d}}} = cryptoCoin;
     const color = colors[Math.floor(Math.random() * colors.length)];
 
     return (
@@ -14,7 +14,7 @@ const CryptoCoinSummary = ({cryptoCoin}) => {
 
                 <Text style={styles.itemSymbol}> {symbol} </Text>
                 <Text style={styles.itemName}>{name}</Text>
-                <Text style={styles.itemPrice}>$ {price_usd}</Text>
+                <Text style={styles.itemPrice}>$ {price}</Text>
             </View>
             <View style={styles.statisticsWrapper}>
                 <Text>24h:
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     itemWrapper: {
         display: "flex",
         flexDirection: "row",
-        marginBottom: 15
+        marginBottom: 5
     },
     statisticsWrapper: {
         display: "flex",

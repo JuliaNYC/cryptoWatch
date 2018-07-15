@@ -27,10 +27,6 @@ export default class App extends Component<Props> {
 
     }
 
-   /* componentDidMount () {
-        this.props.isUserLoggedIn()
-    }*/
-
     render() {
         console.warn("user in app" )
         return (
@@ -41,12 +37,3 @@ export default class App extends Component<Props> {
     }
 }
 
-/*export default connect(null, {isUserLoggedIn})(App)*/
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        backgroundColor: '#F5FCFF',
-    }
-});

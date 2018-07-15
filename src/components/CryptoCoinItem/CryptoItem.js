@@ -46,7 +46,7 @@ export default class CryptoItem extends React.Component {
         const {itemContainer, button} = styles;
 
         return (
-            <View >
+            <View styles={itemContainer}>
                 <CryptoItemSummary
                     cryptoCoin={this.props.cryptoCoin}
                 />
@@ -71,7 +71,7 @@ export default class CryptoItem extends React.Component {
 const styles = StyleSheet.create({
     itemContainer: {
         display: "flex",
-        marginBottom: 20,
+        marginBottom: 140,
         borderBottomColor: "#e5e5e5",
         borderBottomWidth: 3,
         padding: 20
