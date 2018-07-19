@@ -11,15 +11,13 @@ import {
     ScrollView
 } from "react-native";
 import {SearchBar} from 'react-native-elements'
-import Spinner from "react-native-loading-spinner-overlay";
-
-import CryptoItem from "../components/CryptoCoinItem/CryptoItem";
+import CoinItem from "../components/CoinItemWizard/CoinItem";
 import Filters from "../components/Filters";
 import {fetchCoinData, resetState} from "../actions/FetchCoinDataAction";
 import {searchCoins, sortBy} from "../actions/FilterDataAction";
 import filterData from '../selectors';
 
-class CryptoContainer extends React.Component {
+class CoinContainer extends React.Component {
 
     state = {
         page: 0,
@@ -31,27 +29,18 @@ class CryptoContainer extends React.Component {
         this.setPage()
     }
 
-/*    renderItem = ({item}) => (
-        <CryptoItem
+    renderItem = ({item}) => (
+        <CoinItem
             id={item.id}
-            cryptoCoin={item}
+            coin={item}
         />
-
-    );*/
-    renderItem = ({item}) => {
-        return   <CryptoItem
-            id={item.id}
-            cryptoCoin={item}
-        />
-    }
+    )
 
     
     keyExtractor = (item, index) => item.id.toString();
 
     setPage = () => {
-        this.setState({
-            page: this.state.page + 1
-        })
+        this.setState(currentState => ({ page: currentState.page + 1 }));
     }
 
     //needed for filters - after initial fetching (count===0) based on filter param, count must be 1
@@ -62,7 +51,7 @@ class CryptoContainer extends React.Component {
         })
     }
 
-    setInitialFilter = (sortParam) => {
+   setInitialSortParam = (sortParam) => {
         console.warn("setInitialFilter", sortParam)
         this.setState({
             sortedBy: sortParam
@@ -98,14 +87,14 @@ class CryptoContainer extends React.Component {
                     platform='ios'
                 />
                 <Filters
-                    fetchCoinData={this.props.fetchCoinData.bind(this)}
-                    setInitialFilter={this.setInitialFilter}
+                    fetchCoinData={this.props.fetchCoinData}
+                    setInitialSortParam={this.setInitialSortParam}
                     resetState={this.props.resetState.bind(this)}
                     resetPageToOne={this.resetPageToOne}
                     sortBy={this.props.sortBy}
                 />
                 <FlatList
-                    data={this.props.cryptoCoins}
+                    data={this.props.coins}
                     keyExtractor={this.keyExtractor}
                     renderItem={this.renderItem}
                     ListFooterComponent={this.renderLoadMoreButton}
@@ -116,16 +105,16 @@ class CryptoContainer extends React.Component {
 }
 
 mapStateToProps = state => {
-    const {data} = state.crypto;
+    const {data} = state.coins;
     return {
-        isFetching: state.crypto.isFetching,
-        cryptoCoins: filterData(data, state.filters)
+        isFetching: state.coins.isFetching,
+        coins: filterData(data, state.filters)
 
     }
 }
 
 
-export default connect(mapStateToProps, {fetchCoinData, resetState, searchCoins, sortBy})(CryptoContainer)
+export default connect(mapStateToProps, {fetchCoinData, resetState, searchCoins, sortBy})(CoinContainer)
 
 
 const styles = StyleSheet.create(

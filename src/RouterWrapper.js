@@ -11,7 +11,7 @@ import {Scene, Router} from "react-native-router-flux";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import FilterAndSearchContainer from "./containers/FilterAndSearchContainer";
 import LoginFormContainer from "./containers/LoginFormContainer";
-import CryptoContainer from "./containers/CryptoContainer";
+import CoinContainer from "./containers/CoinContainer";
 import Loading from "./components/Loading";
 import Logout from "./components/Logout";
 
@@ -51,7 +51,7 @@ export const RouterWrapper = () => (
                     titleStyle={styles.title}>
                     <Scene
                         key="main-cryptoCoins"
-                        component={CryptoContainer}
+                        component={CoinContainer}
                     />
                 </Scene>
 

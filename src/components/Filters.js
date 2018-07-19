@@ -4,7 +4,7 @@ import {
     Button
 } from "react-native";
 
-const Filters = ({sortBy,pageCounter, fetchCoinData, resetState, resetPageToOne,  setInitialFilter}) => {
+const Filters = ({fetchCoinData, resetState, resetPageToOne, setInitialSortParam}) => {
 
     return (
         <View>
@@ -14,7 +14,7 @@ const Filters = ({sortBy,pageCounter, fetchCoinData, resetState, resetPageToOne,
                     resetState()
                     fetchCoinData(0, 'percent_change_24h')
                     resetPageToOne()
-                    setInitialFilter('percent_change_24h')
+                    setInitialSortParam('percent_change_24h')
                 }}
             />
             <Button
@@ -23,7 +23,7 @@ const Filters = ({sortBy,pageCounter, fetchCoinData, resetState, resetPageToOne,
                     resetState()
                     fetchCoinData(0, 'volume_24h')
                     resetPageToOne()
-                    setInitialFilter('volume_24h')
+                    setInitialSortParam('volume_24h')
                 }}
             />
             <Button

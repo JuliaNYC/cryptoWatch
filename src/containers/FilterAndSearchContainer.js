@@ -131,7 +131,7 @@ import {
 import {SearchBar} from 'react-native-elements'
 import Spinner from "react-native-loading-spinner-overlay";
 
-import CryptoItem from "../components/CryptoCoinItem/CryptoItem";
+import CryptoItem from "../components/CoinItemWizard/CoinItem";
 import CustomFilters from "../components/CustomFilters";
 import {fetchAllCoinData, loadMoreData} from "../actions/FetchCoinDataAction";
 import {searchCoins, sortBy} from "../actions/FilterDataAction";

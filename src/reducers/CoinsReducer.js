@@ -7,7 +7,6 @@ import {
 const initialState = {
     isFetching: null,
     data: [],
-/*    data: {},*/
     hasError: false,
     errorMsg: null
 }
@@ -24,10 +23,8 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 isFetching: false,
-               /* data: {...state.data, ...action.payload},*/
                 data: [...state.data, ...action.payload],
                 hasError: false
-              //  errorMsg: null
             }
 
 

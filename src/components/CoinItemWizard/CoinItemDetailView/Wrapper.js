@@ -3,10 +3,8 @@ import { View } from "react-native";
 import Chart from "./Chart";
 import CryptoCoinInfo from "./Info";
 
-const DetailViewWrapper = ({cryptoCoin}) => {
-    const {circulating_supply, total_supply, max_supply, quotes: {USD: {percent_change_1h, percent_change_24h, percent_change_7d}}} = cryptoCoin;
-console.warn("?!?!?!?")
-    // percent_change_1h, percent_change_24h, percent_change_7d, total_supply, max_supply, available_supply,
+const DetailViewWrapper = ({coin}) => {
+    const {circulating_supply, total_supply, max_supply, quotes: {USD: {percent_change_1h, percent_change_24h, percent_change_7d}}} = coin;
         return <View>
             <CryptoCoinInfo
                 availableSupply={circulating_supply}
