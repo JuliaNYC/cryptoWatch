@@ -39,7 +39,6 @@ class CryptoContainer extends React.Component {
 
     );*/
     renderItem = ({item}) => {
-        console.warn("cryptoitemmmm", item)
         return   <CryptoItem
             id={item.id}
             cryptoCoin={item}
@@ -64,6 +63,7 @@ class CryptoContainer extends React.Component {
     }
 
     setInitialFilter = (sortParam) => {
+        console.warn("setInitialFilter", sortParam)
         this.setState({
             sortedBy: sortParam
         })
@@ -77,6 +77,7 @@ class CryptoContainer extends React.Component {
     }
 
     loadMoreData = () => {
+        console.warn("this.state.sortedBy", this.state.sortedBy)
         this.props.fetchCoinData(this.state.page, this.state.sortedBy);
         this.setPage()
     }

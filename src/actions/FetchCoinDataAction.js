@@ -11,8 +11,9 @@ import {
     FETCH_ALL_COIN_DATA_ERR
 
 } from "../utils/Constants.js";
+import CoinAPI from "../services/api/CoinAPI";
 
-export const fetchCoinData = (startPoint, initialSortBy) => {
+/*export const fetchCoinData = (startPoint, initialSortBy) => {
     return dispatch => {
         const sortParam = initialSortBy === undefined ? "rank" : initialSortBy;
         const start = startPoint === 0 ? 0 : `${startPoint}1`;
@@ -20,11 +21,28 @@ export const fetchCoinData = (startPoint, initialSortBy) => {
         return axios.get(`${api_root_url}/v2/ticker/?start=${start}1&limit=10&sort=${sortParam}&structure=array`)
 
             .then(res => {
+                console.warn("resssss---->", res)
                 dispatch({type: FETCH_COIN_DATA_SUCESS, payload: res.data.data})
             })
             .catch(err => {
                 console.log("err------ here >", err)
                 dispatch({type: FETCH_COIN_DATA_ERR, payload: err.data})
+            })
+    }
+}*/
+
+export const fetchCoinData = (startPoint, initialSortBy) => {
+    return dispatch => {
+        dispatch({type: FETCHING_COIN_DATA})
+        return CoinAPI.getCoins(startPoint, initialSortBy)
+
+            .then(coins => {
+                console.warn("coins------>", coins)
+                dispatch({type: FETCH_COIN_DATA_SUCESS, payload: coins})
+            })
+            .catch(err => {
+                console.log("err------ here >", err)
+                dispatch({type: FETCH_COIN_DATA_ERR, payload: err})
             })
     }
 }
