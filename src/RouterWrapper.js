@@ -41,7 +41,7 @@ export const RouterWrapper = () => (
             <Scene
                 key="tabbar"
                 tabs
-                tabBarStyle={{backgroundColor: 'pink'}}
+                navigationBarStyle={styles.navigationBar}
                 labelStyle={styles.title}>
                 <Scene
                     key="main"
@@ -82,6 +82,9 @@ export const RouterWrapper = () => (
 );
 
 const styles = {
+    navigationBar: {
+        backgroundColor: '#FA9702'
+    },
     title: {
         color: "black"
     }

@@ -122,6 +122,7 @@ const styles = StyleSheet.create(
         container:
             {
                 flex: 1,
+                backgroundColor: "white",
                 justifyContent: 'center',
                 alignItems: 'center',
                 paddingTop: ( Platform.OS === 'ios' ) ? 20 : 0

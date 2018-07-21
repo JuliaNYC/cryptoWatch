@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
         marginLeft: 5
     },
     percentChangePlus: {
-        color: "#00BFA5",
+        color: "#76DB12",
         fontWeight: "bold",
         marginLeft: 5
     }

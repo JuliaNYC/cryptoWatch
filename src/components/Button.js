@@ -1,21 +1,23 @@
 import React from "react";
-import { View, TextInput, TouchbleOpacity} from "react-native";
+import { View, Text, TextInput, TouchableOpacity} from "react-native";
 
-const Button = ({onPress, children}) => {
+const Button = ({onPress, buttonStyle, children}) => {
     return (
-        <TouchbleOpacity onPress={onPress}>
-            <Text
+        <TouchableOpacity onPress={onPress} style={buttonStyle}>
+            <Text style={styles.text}>
                 {children}
-            />
-        </TouchbleOpacity>
+            </Text>
+        </TouchableOpacity>
     )
-}
-
-const styles = {
-    button: {
-
-    }
 }
 
 
 export default Button;
+
+const styles = {
+    text: {
+        color: "white",
+        textAlign: "center",
+        justifyContent: "center"
+    }
+}

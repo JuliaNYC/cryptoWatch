@@ -1,6 +1,6 @@
 import React from "react";
-import {View, Button, StyleSheet} from "react-native";
-
+import {View, StyleSheet} from "react-native";
+import Button from "../Button";
 import DetailViewWrapper from "./CoinItemDetailView/Wrapper";
 import CoinItemSummary from "./CoinItemSummary";
 import Spinner from "react-native-loading-spinner-overlay";
@@ -34,9 +34,10 @@ export default class CoinItem extends React.Component {
         return (
             <Button
                 onPress={this.renderDetailView}
-                title={!this.state.showDetailView ? 'Learn more' : 'close'}
-                color="#841584"
-            />
+                buttonStyle={styles.button}
+            >
+                {!this.state.showDetailView ? 'MORE' : 'CLOSE'}
+            </Button>
         )
 
     }
@@ -77,7 +78,11 @@ const styles = StyleSheet.create({
         padding: 20
     },
     button: {
-        backgroundColor: 'pink'
+        backgroundColor: '#030F26',
+        marginTop: 10,
+        marginBottom: 30,
+        height: 20,
+        color: "white"
     }
 })
 
