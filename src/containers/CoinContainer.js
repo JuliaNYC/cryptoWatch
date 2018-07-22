@@ -13,6 +13,7 @@ import {
 import {SearchBar} from 'react-native-elements'
 import CoinItem from "../components/CoinItemWizard/CoinItem";
 import Filters from "../components/Filters";
+import Search from "../components/Search";
 import {fetchCoinData, resetState} from "../actions/FetchCoinDataAction";
 import {searchCoins, sortBy} from "../actions/FilterDataAction";
 import filterData from '../selectors';
@@ -72,6 +73,7 @@ class CoinContainer extends React.Component {
     }
 
     render() {
+        console.warn("thiiiiiiis", this.props.coins)
         return (
             <View style={styles.container}>
                 {this.props.isFetching ?
@@ -80,12 +82,16 @@ class CoinContainer extends React.Component {
                     </View>
                     : null
                 }
+                {this.props.hasError ?
+                    <View><Text>Sorry, currently out of service :(</Text></View> :
+                    <View>
                 <SearchBar
                     lightTheme
                     clearIcon
                     placeholder='Type Here...'
                     platform='ios'
                 />
+
                 <Filters
                     fetchCoinData={this.props.fetchCoinData}
                     setInitialSortParam={this.setInitialSortParam}
@@ -99,6 +105,8 @@ class CoinContainer extends React.Component {
                     renderItem={this.renderItem}
                     ListFooterComponent={this.renderLoadMoreButton}
                 />
+                    </View>
+                    }
             </View>
         );
     }
@@ -108,6 +116,7 @@ mapStateToProps = state => {
     const {data} = state.coins;
     return {
         isFetching: state.coins.isFetching,
+        hasError: state.coins.hasError,
         coins: filterData(data, state.filters)
 
     }

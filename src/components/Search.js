@@ -1,10 +1,26 @@
-import { SearchBar } from 'react-native-elements'
+import React from "React";
+import { TextInput } from 'react-native'
 
-export default const SearchField = () => {
-    return  <SearchBar
-        lightTheme
-        onChangeText={this.filterCoins}
-        placeholder='Type Here...'
-        platform='ios'
-    />
+const Search = () => {
+    return  (
+        <TextInput
+            style={styles.searchBar}
+            placeholder='Search'
+        />
+        )
+
+}
+export default Search;
+
+const styles = {
+    searchBar: {
+        height: 40,
+        width: "80%",
+        borderColor: 'grey',
+        borderWidth: 1,
+        marginTop: 30,
+        marginBottom: 20,
+        textAlign: "center",
+        color: "#030F26"
+    }
 }

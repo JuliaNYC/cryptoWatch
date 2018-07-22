@@ -8,7 +8,7 @@ import Button from "./Button";
 const Filters = ({fetchCoinData, resetState, resetPageToOne, setInitialSortParam}) => {
 
     return (
-        <View style={styles.container}>
+        <View buttonStyle={styles.container}>
             <Button
                 onPress={() => {
                     resetState()
