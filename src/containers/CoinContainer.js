@@ -44,8 +44,6 @@ class CoinContainer extends React.Component {
         this.setState(currentState => ({ page: currentState.page + 1 }));
     }
 
-    //needed for filters - after initial fetching (count===0) based on filter param, count must be 1
-    //because this.setState.. happens inside here, not filter omponent
     resetPageToOne = () => {
         this.setState({
             page: 1
@@ -53,7 +51,6 @@ class CoinContainer extends React.Component {
     }
 
    setInitialSortParam = (sortParam) => {
-        console.warn("setInitialFilter", sortParam)
         this.setState({
             sortedBy: sortParam
         })
@@ -67,13 +64,11 @@ class CoinContainer extends React.Component {
     }
 
     loadMoreData = () => {
-        console.warn("this.state.sortedBy", this.state.sortedBy)
         this.props.fetchCoinData(this.state.page, this.state.sortedBy);
         this.setPage()
     }
 
     render() {
-        console.warn("thiiiiiiis", this.props.coins)
         return (
             <View style={styles.container}>
                 {this.props.isFetching ?
@@ -85,12 +80,12 @@ class CoinContainer extends React.Component {
                 {this.props.hasError ?
                     <View><Text>Sorry, currently out of service :(</Text></View> :
                     <View>
-                <SearchBar
+               {/* <SearchBar
                     lightTheme
                     clearIcon
                     placeholder='Type Here...'
                     platform='ios'
-                />
+                />*/}
 
                 <Filters
                     fetchCoinData={this.props.fetchCoinData}

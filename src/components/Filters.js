@@ -1,6 +1,7 @@
 import React from "react";
 import {
     View,
+    Text,
     StyleSheet
 } from "react-native";
 import Button from "./Button";
@@ -8,8 +9,9 @@ import Button from "./Button";
 const Filters = ({fetchCoinData, resetState, resetPageToOne, setInitialSortParam}) => {
 
     return (
-        <View buttonStyle={styles.container}>
+        <View style={styles.container}>
             <Button
+                buttonStyle={styles.button}
                 onPress={() => {
                     resetState()
                     fetchCoinData(0, 'percent_change_24h')
@@ -20,6 +22,7 @@ const Filters = ({fetchCoinData, resetState, resetPageToOne, setInitialSortParam
                 24 Hrs %
             </Button>
             <Button
+                buttonStyle={styles.button}
                 onPress={() => {
                     resetState()
                     fetchCoinData(0, 'volume_24h')
@@ -30,6 +33,7 @@ const Filters = ({fetchCoinData, resetState, resetPageToOne, setInitialSortParam
                 24 Hrs Volume %
             </Button>
             <Button
+                buttonStyle={styles.button}
                 onPress={() => {
                     resetState()
                     fetchCoinData(0, 'rank')
@@ -44,29 +48,18 @@ const Filters = ({fetchCoinData, resetState, resetPageToOne, setInitialSortParam
 
 export default Filters;
 
-/*
-const styles = StyleSheet.create({
-    container: {
-        display: "flex",
-      /!*  marginBottom: 140,
-        borderBottomColor: "#e5e5e5",
-        borderBottomWidth: 3,
-        padding: 20*!/
-    },
-    button: {
-        backgroundColor: 'orange',
-        color: "green"
-    }
-})
-*/
-const styles = StyleSheet.create({
-        container:
-            {
-                flexDirection: "row"
+const styles = {
+        container: {
+            flexDirection: "row",
+            justifyContent: "space-between",
+            marginBottom: 15
             },
     button: {
-        backgroundColor: 'orange',
-        fontSize: 10
+
+        backgroundColor: '#030F26',
+        height: 30,
+        width: 95,
+        fontSize: 10,
     }
 
-    });
+    };

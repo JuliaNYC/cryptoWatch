@@ -5,12 +5,39 @@ import {colors} from "../../utils/Constants";
 
 const CoinItemSummary = ({coin}) => {
     const {name, symbol, quotes: {USD: {price, percent_change_24h, percent_change_7d}}} = coin;
-    const color = colors[Math.floor(Math.random() * colors.length)];
+   // const color = colors[Math.floor(Math.random() * colors.length)];
+
+    const setIconColor = () => {
+        const symbo = symbol.split("")[0];
+        let color;
+        switch (symbo) {
+            case (symbo.match(/[a-d]/i) || {}).input:
+                color = colors[0];
+                break;
+            case (symbo.match(/[e-h]/i) || {}).input:
+                color= colors[1];
+                break;
+            case (symbo.match(/[j-m]/i) || {}).input:
+                color= colors[2];
+                break;
+            case (symbo.match(/[n-q]/i) || {}).input:
+                color= colors[3];
+                break;
+            case (symbo.match(/[r-u]/i) || {}).input:
+                color= colors[4];
+                break;
+            case (symbo.match(/[v-z]/i) || {}).input:
+                color= colors[5];
+                break;
+        }
+        return color;
+
+    }
 
     return (
         <View>
             <View style={styles.itemWrapper}>
-                <CryptoIcon name={symbol.toLowerCase()} style={{fontSize: 45, color: color}}/>
+                <CryptoIcon name={symbol.toLowerCase()} style={{fontSize: 45, color: setIconColor()}}/>
 
                 <Text style={styles.itemSymbol}> {symbol} </Text>
                 <Text style={styles.itemName}>{name}</Text>
