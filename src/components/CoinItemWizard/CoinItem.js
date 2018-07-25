@@ -58,6 +58,7 @@ export default class CoinItem extends React.Component {
 
                 {this.state.showDetailView ?
                     <DetailViewWrapper
+                        addCoinToWatch={this.props.addCoinToWatch}
                         coin={this.props.coin}
                         showDetailView={this.state.showDetailView}/>
                     : null
@@ -81,8 +82,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#030F26',
         marginTop: 10,
         marginBottom: 30,
-        height: 20,
-        color: "white"
+        height: 20
     }
 })
 

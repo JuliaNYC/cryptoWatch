@@ -4,10 +4,10 @@ import Chart from "./Chart";
 import Info from "./Info";
 import AddCoinToWatchList from "../../AddCoinToWatchList";
 
-const DetailViewWrapper = ({coin}) => {
-    const {circulating_supply, total_supply, max_supply, quotes: {USD: {percent_change_1h, percent_change_24h, percent_change_7d}}} = coin;
+const DetailViewWrapper = ({coin, addCoinToWatch}) => {
+    const {symbol, circulating_supply, total_supply, max_supply, quotes: {USD: {percent_change_1h, percent_change_24h, percent_change_7d}}} = coin;
         return <View>
-            <AddCoinToWatchList />
+            <AddCoinToWatchList symbol={symbol} addCoinToWatch={addCoinToWatch}/>
             <Info
                 availableSupply={circulating_supply}
                 maxSupply={max_supply}

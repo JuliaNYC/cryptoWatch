@@ -16,13 +16,15 @@ import Filters from "../components/Filters";
 import Search from "../components/Search";
 import {fetchCoinData, resetState} from "../actions/FetchCoinDataAction";
 import {searchCoins, sortBy} from "../actions/FilterDataAction";
+import {addCoinToWatchList} from "../actions/WatchCoinsListAction";
 import filterData from '../selectors';
 
 class CoinContainer extends React.Component {
 
     state = {
         page: 0,
-        sortedBy: undefined
+        sortedBy: undefined,
+        input: ""
     }
 
     componentDidMount() {
@@ -34,6 +36,7 @@ class CoinContainer extends React.Component {
         <CoinItem
             id={item.id}
             coin={item}
+            addCoinToWatch={this.addCoinToWatch}
         />
     )
 
@@ -63,9 +66,20 @@ class CoinContainer extends React.Component {
         />
     }
 
+    filterResults = (input) => {
+        console.warn("input", input)
+        this.props.searchCoins(input)
+    }
+
+
     loadMoreData = () => {
         this.props.fetchCoinData(this.state.page, this.state.sortedBy);
         this.setPage()
+    }
+
+    addCoinToWatch = (symbol) => {
+        console.warn("addCoinToWatch called", symbol)
+        this.props.addCoinToWatchList(symbol)
     }
 
     render() {
@@ -80,13 +94,13 @@ class CoinContainer extends React.Component {
                 {this.props.hasError ?
                     <View><Text>Sorry, currently out of service :(</Text></View> :
                     <View>
-               {/* <SearchBar
+                <SearchBar
                     lightTheme
                     clearIcon
                     placeholder='Type Here...'
-                    platform='ios'
-                />*/}
-
+                    onChangeText={this.filterResults}
+                />
+                <Search />
                 <Filters
                     fetchCoinData={this.props.fetchCoinData}
                     setInitialSortParam={this.setInitialSortParam}
@@ -118,7 +132,9 @@ mapStateToProps = state => {
 }
 
 
-export default connect(mapStateToProps, {fetchCoinData, resetState, searchCoins, sortBy})(CoinContainer)
+export default connect(mapStateToProps, {
+    fetchCoinData, resetState, searchCoins, sortBy, addCoinToWatchList
+})(CoinContainer)
 
 
 const styles = StyleSheet.create(
@@ -127,8 +143,7 @@ const styles = StyleSheet.create(
             {
                 flex: 1,
                 backgroundColor: "white",
-                justifyContent: 'center',
-                alignItems: 'center',
+                padding: 25,
                 paddingTop: ( Platform.OS === 'ios' ) ? 20 : 0
             }
 

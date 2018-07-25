@@ -16,7 +16,7 @@ import Loading from "./components/Loading";
 import Logout from "./components/Logout";
 
 const TabIcon = ({iconName, selected, title, focused}) => (
-    <Icon name={iconName} size={30} color={focused ? "#5ac6dd" : "black"}/>
+    <Icon name={iconName} size={30} color={focused ? "#030F26" : "#FA9702"}/>
 )
 
 export const RouterWrapper = () => (
@@ -83,7 +83,8 @@ export const RouterWrapper = () => (
 
 const styles = {
     navigationBar: {
-        backgroundColor: '#FA9702'
+       /* backgroundColor: '#FA9702'*/
+        backgroundColor: 'white'
     },
     title: {
         color: "black"

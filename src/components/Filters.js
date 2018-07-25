@@ -58,8 +58,7 @@ const styles = {
 
         backgroundColor: '#030F26',
         height: 30,
-        width: 95,
-        fontSize: 10,
+        width: 95
     }
 
     };
