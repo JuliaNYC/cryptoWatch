@@ -1,18 +1,16 @@
 import {
-    ADD_COINS_TO_WATCH_LIST } from "../utils/Constants";
+    ADD_COINS_TO_WATCH_LIST_SUCCESS } from "../utils/Constants";
 
 const initialState = {
-/*    isFetching: null,*/
-    watchedCoins: []
-    /*hasError: false,
-    errorMsg: null*/
+    coins: []
 }
 
 export default (state = initialState, action) => {
    switch (action.type) {
-       case ADD_COINS_TO_WATCH_LIST:
+       case ADD_COINS_TO_WATCH_LIST_SUCCESS:
            return {
-               ...state
+               ...state,
+               coins: [...state.coins, action.payload]
            }
        default:
            return state;

@@ -2,7 +2,8 @@ import firebase from "firebase";
 import {
     ADD_COINS_TO_WATCH_LIST,
     ADD_COINS_TO_WATCH_LIST_SUCCESS,
-    ADD_COINS_TO_WATCH_LIST_ERR
+    ADD_COINS_TO_WATCH_LIST_ERR,
+    FETCH_WATCHED_COINS_SUCCESS
 } from "../utils/Constants.js";
 
 export const addCoinToWatchList = (coin) => {
@@ -16,7 +17,7 @@ export const addCoinToWatchList = (coin) => {
                 console.warn("ressss", res)
                 dispatch({
                     type: ADD_COINS_TO_WATCH_LIST_SUCCESS,
-                    payload: res
+                    payload: coin
                 })
             })
             .catch(err => {
@@ -25,4 +26,16 @@ export const addCoinToWatchList = (coin) => {
             })
     }
 
+}
+
+
+export const fetchWatchedCoins = () => {
+    const {currentUser} = firebase.auth();
+
+    return dispatch => {
+        firebase.database().ref(`/users/${currentUser.uid}/coins`)
+            .on('value', snapshot => {
+                dispatch({type: FETCH_WATCHED_COINS_SUCCESS, payload: snapshot.val()})
+            })
+    }
 }

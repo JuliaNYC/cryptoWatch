@@ -12,6 +12,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import FilterAndSearchContainer from "./containers/FilterAndSearchContainer";
 import LoginFormContainer from "./containers/LoginFormContainer";
 import CoinContainer from "./containers/CoinContainer";
+import WatchCoinsListContainer from "./containers/WatchCoinsListContainer";
 import Loading from "./components/Loading";
 import Logout from "./components/Logout";
 
@@ -65,7 +66,7 @@ export const RouterWrapper = () => (
                     />
                 </Scene>
 
-                <Scene
+               {/* <Scene
                     key="search"
                     iconName='search'
                     icon={TabIcon}>
@@ -73,8 +74,16 @@ export const RouterWrapper = () => (
                         key="search"
                         component={FilterAndSearchContainer}
                     />
+                </Scene>*/}
+                <Scene
+                    key="watch"
+                    iconName='eye'
+                    icon={TabIcon}>
+                    <Scene
+                        key="watch"
+                        component={WatchCoinsListContainer}
+                    />
                 </Scene>
-
             </Scene>
 
         </Scene>

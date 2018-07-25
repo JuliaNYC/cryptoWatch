@@ -83,6 +83,7 @@ class CoinContainer extends React.Component {
     }
 
     render() {
+        console.warn(" watchList from reduer", this.props.watchList)
         return (
             <View style={styles.container}>
                 {this.props.isFetching ?
@@ -126,7 +127,8 @@ mapStateToProps = state => {
     return {
         isFetching: state.coins.isFetching,
         hasError: state.coins.hasError,
-        coins: filterData(data, state.filters)
+        coins: filterData(data, state.filters),
+        watchList: state.watchList.coins
 
     }
 }
