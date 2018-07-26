@@ -59,8 +59,11 @@ export default class CoinItem extends React.Component {
                 {this.state.showDetailView ?
                     <DetailViewWrapper
                         addCoinToWatch={this.props.addCoinToWatch}
+                       // watchList={this.props.watchList}
+                        added={this.props.added}
                         coin={this.props.coin}
-                        showDetailView={this.state.showDetailView}/>
+                        showDetailView={this.state.showDetailView}
+                    />
                     : null
                 }
 

@@ -8,7 +8,7 @@ const initialState = {
 export default (state = initialState, action) => {
    switch (action.type) {
        case FETCH_WATCHED_COINS_SUCCESS:
-           console.warn("action in watch", action)
+           console.warn("action in watch", action.payload)
            return {
                ...state, ...action.payload
               // coins: [...state.coins, action.payload]
