@@ -42,20 +42,12 @@ class WatchCoinsListContainer extends React.Component {
 }
 
 mapStateToProps = state => {
-console.warn("mapstate coins", state.watchList)
-  /*  const watchList = Object.entries(state.watchList).forEach(([ uid, val]) => {
-    console.warn("hereeee", val, uid, "test--->", {...val, uid})
-    return {...val, uid}
-})*/
     const watchList = _.map(state.watchList, (val, uid) => {
         console.warn("hereeee", val, uid, "test--->", {...val, uid})
         return {...val, uid}
     })
 return { watchList }
-   /* return {
-        watchList: state.watchList
 
-    }*/
 }
 
 

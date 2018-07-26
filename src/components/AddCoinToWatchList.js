@@ -3,10 +3,10 @@ import {View, Text, TextInput, TouchbleOpacity} from "react-native";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Button from "./Button";
 
-const AddCoinToWatchList = ({added, symbol}) => {
+const AddCoinToWatchList = ({addCoinToWatch, added, id}) => {
 
   const addToWatch = () => {
-        this.props.addCoinToWatch(symbol)
+       addCoinToWatch(id)
     }
 
     const renderIcon = () => {

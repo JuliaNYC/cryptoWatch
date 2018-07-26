@@ -41,7 +41,7 @@ class CoinContainer extends React.Component {
             coin={item}
             addCoinToWatch={this.addCoinToWatch}
            // watchList={this.props.watchList}
-            added={this.props.watchList.includes(item.symbol)}
+            added={this.props.watchList.includes(item.id)}
         />
     )
 
@@ -82,9 +82,10 @@ class CoinContainer extends React.Component {
         this.setPage()
     }
 
-    addCoinToWatch = (symbol) => {
-        console.warn("addCoinToWatch called", symbol)
-        this.props.addCoinToWatchList(symbol)
+    addCoinToWatch = (id) => {
+        console.warn("addCoinToWatch called", id)
+       // this.props.addCoinToWatchList(symbol)
+        this.props.addCoinToWatchList(id)
     }
 
     render() {
