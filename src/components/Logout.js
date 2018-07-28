@@ -3,38 +3,55 @@ import {
     View,
     Text,
     TextInput,
-    Button,
     StyleSheet
 } from "react-native";
 import {connect} from "react-redux";
+import Icon from 'react-native-vector-icons/FontAwesome';
+import Button from "./Button";
 import {logoutUser} from "../actions/AuthAction";
 
-class Logout extends React.Component {
-    render () {
-        const {logoutContainer, title, button} = styles;
-        return (
+const Logout = ({logoutUser}) => {
+    const {logoutContainer, title, button, buttonText} = styles;
+    return (
         <View style={logoutContainer}>
-            <Text style={title}>Logout</Text>
             <Button
-                title="Logout"
-                style={button}
-                onPress={()=> this.props.logoutUser()}
-            />
+                buttonStyle={button}
+                onPress={() => logoutUser()}
+            >
+                <Text style={buttonText}>
+                Logout
+                </Text>
+            </Button>
+            <Text style={title}>See you soon
+                <Icon
+                    name="hand-peace-o"
+                    size={20}
+                    color="#030F26"
+                />
+            </Text>
         </View>
-        )
-    }
+    )
 }
 
 const styles = {
     logoutContainer: {
-        margin: 30
+        margin: 60
     },
     title: {
-       textAlign: "center",
-        color: "#5ac6dd"
+        textAlign: "center",
+        fontSize: 15,
+        color: "#030F26",
+        marginTop: 15,
+        marginRight: 15
     },
     button: {
-        backgroundColor: "#5ac6dd"
+        backgroundColor: "#FA9702",
+        height: 40,
+        borderRadius: 10,
+        fontSize: 20
+    },
+    buttonText: {
+        fontSize: 20
     }
 }
 

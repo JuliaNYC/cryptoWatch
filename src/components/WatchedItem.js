@@ -1,5 +1,6 @@
 import React from "react";
 import {View, Text} from "react-native";
+import Icon from 'react-native-vector-icons/FontAwesome';
 import Button from "./Button";
 import WatchedItemDetailView from "./WatchedItemDetailView";
 
@@ -16,11 +17,17 @@ export default class WatchedItem extends React.Component {
     }
 
     render() {
+        const {name, symbol} = this.props.coin;
         return (
             <View>
+                <Text>{symbol}</Text>
+                <Text>{name}</Text>
                 <Button onPress={this.getCoin}>
-                    <Text>{this.props.coin.symbol}</Text>
-                    <Text>{this.props.coin.name}</Text>
+                    <Icon
+                        name={this.state.showDetailView ? "times-circle" : "info-circle"}
+                        size={30}
+                        color="#030F26"
+                    />
                 </Button>
                 <View>
                     {this.state.showDetailView ?
