@@ -11,13 +11,14 @@ export default (state = initialState, action) => {
        case FETCH_WATCHED_COINS_SUCCESS:
            console.warn("action in watch", action.payload)
            return {
-             // ...state, ...action.payload
+               ...state,
                coins: {...state.coins, ...action.payload}
 
            }
        case FETCH_WATCHED_COIN_SUCCESS:
            return {
-              coin:  {...state, ...action.payload}
+               ...state,
+               coin: {...action.payload}
            }
        default:
            return state;

@@ -48,8 +48,8 @@ export const fetchWatchedCoin = (id) => {
         dispatch({type: FETCH_WATCHED_COIN})
         return CoinAPI.getCoin(id)
             .then(coin => {
-                console.warn("coin oneeeeeeee------>", coin)
-                dispatch({type: FETCH_WATCHED_COIN_SUCCESS, payload: coin})
+                console.warn("coin oneeeeeeee------>", coin.data.data)
+                dispatch({type: FETCH_WATCHED_COIN_SUCCESS, payload: coin.data.data})
             })
             /*.catch(err => {
                 console.log("err------ here >", err)
