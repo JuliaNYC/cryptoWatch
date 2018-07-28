@@ -17,6 +17,7 @@ const LoginOrSignupWithEmail = ({email, password, onEmailChange, onPasswordChang
                 </View>
                 <TextInput
                     style={input}
+                    autoCorrect={false}
                     placeholder="Enter Your Email Here"
                     onChangeText={onEmailChange}
                     value={email}
@@ -29,6 +30,8 @@ const LoginOrSignupWithEmail = ({email, password, onEmailChange, onPasswordChang
                 </View>
                 <TextInput
                     style={input}
+                    secureTextEntry={true}
+                    autoCorrect={false}
                     placeholder="Enter Your Password Here"
                     onChangeText={onPasswordChange}
                     value={password}
