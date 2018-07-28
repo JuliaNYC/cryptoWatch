@@ -1,8 +1,9 @@
 import {
-    FETCH_WATCHED_COINS_SUCCESS } from "../utils/Constants";
+    FETCH_WATCHED_COINS_SUCCESS, FETCH_WATCHED_COIN_SUCCESS } from "../utils/Constants";
 
 const initialState = {
-   // coins: []
+    coins: {},
+    coin: {}
 }
 
 export default (state = initialState, action) => {
@@ -10,9 +11,13 @@ export default (state = initialState, action) => {
        case FETCH_WATCHED_COINS_SUCCESS:
            console.warn("action in watch", action.payload)
            return {
-               ...state, ...action.payload
-              // coins: [...state.coins, action.payload]
+             // ...state, ...action.payload
+               coins: {...state.coins, ...action.payload}
 
+           }
+       case FETCH_WATCHED_COIN_SUCCESS:
+           return {
+              coin:  {...state, ...action.payload}
            }
        default:
            return state;

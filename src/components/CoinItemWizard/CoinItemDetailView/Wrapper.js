@@ -10,7 +10,8 @@ const DetailViewWrapper = ({coin, addCoinToWatch,  added}) => {
     return <View>
             <AddCoinToWatchList
                 /*symbol={symbol}*/
-                id={id}
+               /* id={id}*/
+                coin={coin}
                 addCoinToWatch={addCoinToWatch}
                // added={watchList.includes(symbol)}
                 added={added}

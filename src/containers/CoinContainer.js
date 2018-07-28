@@ -41,7 +41,7 @@ class CoinContainer extends React.Component {
             coin={item}
             addCoinToWatch={this.addCoinToWatch}
            // watchList={this.props.watchList}
-            added={this.props.watchList.includes(item.id)}
+            added={this.props.watchedCoinsById.includes(item.id)}
         />
     )
 
@@ -82,14 +82,20 @@ class CoinContainer extends React.Component {
         this.setPage()
     }
 
-    addCoinToWatch = (id) => {
+   /* addCoinToWatch = (id) => {
         console.warn("addCoinToWatch called", id)
        // this.props.addCoinToWatchList(symbol)
         this.props.addCoinToWatchList(id)
+    }*/
+
+    addCoinToWatch = (coin) => {
+        console.warn("addCoinToWatch called", coin)
+        // this.props.addCoinToWatchList(symbol)
+        this.props.addCoinToWatchList(coin)
     }
 
     render() {
-        console.warn("renderrrrr 222", this.props.watchList)
+        console.warn("renderrrrr 222", this.props.watchList, this.props.watchedCoinsById)
         return (
             <View style={styles.container}>
                 {this.props.isFetching ?
@@ -129,14 +135,18 @@ class CoinContainer extends React.Component {
 }
 
 mapStateToProps = state => {
+    console.warn("state.watchList", state.watchList.coins)
     const {data} = state.coins;
-    const watchList = _.map(_.values(state.watchList), "coin")
+    const watchList = _.map(_.values(state.watchList.coins), "coin")
+   // const watchedCoinsById = _.map(_.values(_.map(_.values(state.watchList.coins),  "coin")), "id")
+    const watchedCoinsById =   _.map( _.map(_.values(state.watchList.coins), "coin"), "id");
 
     return {
         isFetching: state.coins.isFetching,
         hasError: state.coins.hasError,
         coins: filterData(data, state.filters),
-        watchList
+        watchList,
+        watchedCoinsById
     }
 }
 
