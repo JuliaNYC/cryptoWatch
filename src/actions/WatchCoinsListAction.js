@@ -5,6 +5,7 @@ import {
     ADD_COINS_TO_WATCH_LIST_ERR,
     FETCH_WATCHED_COINS_SUCCESS,
     FETCH_WATCHED_COIN,
+    FETCH_WATCHED_COIN_ERR,
     FETCH_WATCHED_COIN_SUCCESS
 } from "../utils/Constants.js";
 import CoinAPI from "../services/api/CoinAPI";
@@ -51,9 +52,9 @@ export const fetchWatchedCoin = (id) => {
                 console.warn("coin oneeeeeeee------>", coin.data.data)
                 dispatch({type: FETCH_WATCHED_COIN_SUCCESS, payload: coin.data.data})
             })
-            /*.catch(err => {
+            .catch(err => {
                 console.log("err------ here >", err)
-                dispatch({type: FETCH_COIN_DATA_ERR, payload: err})
-            })*/
+                dispatch({type: FETCH_WATCHED_COIN_ERR, payload: err})
+            })
     }
 }

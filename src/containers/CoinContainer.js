@@ -71,7 +71,6 @@ class CoinContainer extends React.Component {
     }
 
     filterResults = (input) => {
-        console.warn("input", input)
         this.props.searchCoins(input)
     }
 
@@ -81,15 +80,8 @@ class CoinContainer extends React.Component {
         this.setPage()
     }
 
-   /* addCoinToWatch = (id) => {
-        console.warn("addCoinToWatch called", id)
-       // this.props.addCoinToWatchList(symbol)
-        this.props.addCoinToWatchList(id)
-    }*/
 
     addCoinToWatch = (coin) => {
-        console.warn("addCoinToWatch called", coin)
-        // this.props.addCoinToWatchList(symbol)
         this.props.addCoinToWatchList(coin)
     }
 
@@ -134,7 +126,6 @@ class CoinContainer extends React.Component {
 }
 
 mapStateToProps = state => {
-    console.warn("state.watchList", state.watchList.coins)
     const {data} = state.coins;
  //   const watchList = _.map(_.values(state.watchList.coins), "coin")
     const watchedCoinsById =   _.map( _.map(_.values(state.watchList.coins), "coin"), "id");
@@ -143,7 +134,6 @@ mapStateToProps = state => {
         isFetching: state.coins.isFetching,
         hasError: state.coins.hasError,
         coins: filterData(data, state.filters),
-     //   watchList,
         watchedCoinsById
     }
 }

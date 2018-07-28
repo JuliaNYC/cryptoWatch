@@ -6,7 +6,6 @@ import Button from "./Button";
 const AddCoinToWatchList = ({ addCoinToWatch, added, coin: {id, symbol, name}}) => {
 
   const addToWatch = () => {
-     //  addCoinToWatch(id)
       addCoinToWatch({id, symbol, name})
     }
 
