@@ -46,7 +46,7 @@ export const RouterWrapper = () => (
                 labelStyle={styles.title}>
                 <Scene
                     key="main"
-                    title="Main"
+                    title="Home"
                     iconName='home'
                     icon={TabIcon}
                     titleStyle={styles.title}>

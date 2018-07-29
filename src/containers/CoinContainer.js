@@ -61,12 +61,17 @@ class CoinContainer extends React.Component {
         })
     }
 
-    renderLoadMoreButton = () => (
-        <Button
-            title="Load more"
-            onPress={this.loadMoreData}
-        />
-    )
+    renderLoadMoreButton = () => {
+        if (this.props.coins.length > 0) {
+          return <Button
+                title="Load more"
+                onPress={this.loadMoreData}
+            />
+        } else {
+            return null;
+        }
+
+    }
 
     filterResults = (input) => {
         this.props.searchCoins(input)
@@ -84,6 +89,7 @@ class CoinContainer extends React.Component {
     }
 
     render() {
+        console.warn("coinssss data after filter", this.props.coins.length)
         return (
             <View style={styles.container}>
                 {this.props.isFetching ?
