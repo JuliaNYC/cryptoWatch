@@ -3,38 +3,59 @@ import {View, Text, TextInput, TouchbleOpacity} from "react-native";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Button from "./Button";
 
-const AddCoinToWatchList = ({ addCoinToWatch, added, coin: {id, symbol, name}}) => {
+const AddCoinToWatchList = ({addCoinToWatch, added, coin: {id, symbol, name}}) => {
 
-  const addToWatch = () => {
-      addCoinToWatch({id, symbol, name})
+    const addToWatch = () => {
+        addCoinToWatch({id, symbol, name})
     }
 
     const renderIcon = () => {
-            if (added) {
-                return <Icon
-                    name="check"
-                    size={30}
-                    color="#5ac6dd"
-
-                />
-            } else {
-                return <Icon
-                    name="plus-circle"
-                    size={30}
-                    color="#5ac6dd"
-
-                />
-            }
+        if (added) {
+            return (
+                <View>
+                    <Icon
+                        style={styles.icon}
+                        name="check"
+                        size={20}
+                        color="#5ac6dd"
+                    >
+                        <Text style={styles.title}>Watching {name}</Text>
+                    </Icon>
+                </View>
+            )
+        } else {
+            return (
+                <Button onPress={addToWatch}>
+                    <Icon
+                        style={styles.icon}
+                        name="plus-circle"
+                        size={20}
+                        color="#5ac6dd"
+                    ><Text style={styles.title}> Watch {name}</Text></Icon>
+                </Button>
+            )
+        }
     }
 
-        return (
-            <View>
-                <Button onPress={addToWatch}>
-                    {renderIcon()}
-                </Button>
-            </View>
-        )
+    return (
+        <View>
+            {renderIcon()}
+        </View>
+    )
 
 }
 
 export default AddCoinToWatchList;
+
+const styles = {
+    icon: {
+        textAlign: "center",
+        padding: 10
+    },
+    title: {
+        fontSize: 16,
+        fontWeight: "bold",
+        marginLeft: 25,
+        padding: 100
+    }
+}

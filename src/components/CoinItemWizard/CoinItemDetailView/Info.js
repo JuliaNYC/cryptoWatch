@@ -5,7 +5,7 @@ const CryptoCoinInfo = (props) => {
 
     return (
         <View style={styles.infoContainer}>
-            <Text style={styles.title}> CryptoCoin Summary </Text>
+            <Text style={styles.title}> DETAILS</Text>
 
             <View style={styles.infoWrapper}>
                 <Text style={styles.label}> Available Supply: </Text>
@@ -28,23 +28,21 @@ const CryptoCoinInfo = (props) => {
 export default CryptoCoinInfo;
 
 const styles = {
-    infoContainer: {
+    infoContainer: {},
 
+    title: {
+        textAlign: 'center',
+        padding: 10,
+        fontWeight: "bold",
     },
-
-title: {
-    textAlign: 'center',
-    padding: 10,
-    color: "#00BFA5",
-    fontWeight: "bold",
-},
     infoWrapper: {
         flexDirection: 'row',
-        justifyContent: 'space-around'
+        justifyContent: 'space-around',
+        backgroundColor: "#ece8e8",
+        marginTop: 3
     },
 
-    info: {
-    },
+    info: {},
     label: {
         fontWeight: "bold"
     }

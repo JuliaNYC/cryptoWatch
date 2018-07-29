@@ -58,7 +58,7 @@ const styles = {
 
         backgroundColor: '#5ac6dd',
         height: 30,
-        width: 98
+        width: 99
     }
 
     };

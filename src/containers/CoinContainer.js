@@ -89,7 +89,6 @@ class CoinContainer extends React.Component {
     }
 
     render() {
-        console.warn("coinssss data after filter", this.props.coins.length)
         return (
             <View style={styles.container}>
                 {this.props.isFetching ?
