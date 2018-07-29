@@ -5,8 +5,6 @@ import {colors} from "../../utils/Constants";
 
 const CoinItemSummary = ({coin}) => {
     const {name, symbol, quotes: {USD: {price, percent_change_24h, percent_change_7d}}} = coin;
-   // const color = colors[Math.floor(Math.random() * colors.length)];
-
     const setIconColor = () => {
         const symbo = symbol.split("")[0];
         let color;
@@ -35,7 +33,7 @@ const CoinItemSummary = ({coin}) => {
     }
 
     return (
-        <View>
+        <View style={styles.itemContainer}>
             <View style={styles.itemWrapper}>
                 <CryptoIcon name={symbol.toLowerCase()} style={{fontSize: 45, color: setIconColor()}}/>
 
@@ -64,11 +62,14 @@ export default CoinItemSummary;
 
 
 const styles = StyleSheet.create({
-
+    itemContainer: {
+       // backgroundColor: "red"
+    },
     itemWrapper: {
         display: "flex",
         flexDirection: "row",
-        marginBottom: 5
+        marginBottom: 15,
+
     },
     statisticsWrapper: {
         display: "flex",

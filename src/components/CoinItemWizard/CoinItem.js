@@ -1,18 +1,17 @@
 import React from "react";
-import {View, StyleSheet} from "react-native";
+import {View, Text} from "react-native";
+import Icon from 'react-native-vector-icons/FontAwesome';
 import Button from "../Button";
-import DetailViewWrapper from "./CoinItemDetailView/Wrapper";
 import CoinItemSummary from "./CoinItemSummary";
+import DetailViewWrapper from "./CoinItemDetailView/Wrapper";
 import Spinner from "react-native-loading-spinner-overlay";
 
 export default class CoinItem extends React.Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
+        state = {
             showDetailView: false
         }
-    }
+
 
     renderDetailView = () => {
         this.setState({
@@ -32,22 +31,30 @@ export default class CoinItem extends React.Component {
             )
         }
         return (
-            <Button
+              <Button
                 onPress={this.renderDetailView}
                 buttonStyle={styles.button}
             >
-                {!this.state.showDetailView ? 'MORE' : 'CLOSE'}
+                  <Icon
+                      name={this.state.showDetailView ? "times-circle" : "info-circle"}
+                      size={30}
+                      color="white"
+                  />
+
             </Button>
+
         )
 
     }
 
 
     render() {
-        const {itemContainer, button} = styles;
+        const {itemContainer, itemSummaryWrapper, button} = styles;
 
         return (
             <View styles={itemContainer}>
+
+                <View style={itemSummaryWrapper}>
                 <CoinItemSummary
                     coin={this.props.coin}
                 />
@@ -55,11 +62,10 @@ export default class CoinItem extends React.Component {
                 <View style={button}>
                     {this.renderButton()}
                 </View>
-
+                </View>
                 {this.state.showDetailView ?
                     <DetailViewWrapper
                         addCoinToWatch={this.props.addCoinToWatch}
-                       // watchList={this.props.watchList}
                         added={this.props.added}
                         coin={this.props.coin}
                         showDetailView={this.state.showDetailView}
@@ -73,21 +79,24 @@ export default class CoinItem extends React.Component {
 }
 
 
-const styles = StyleSheet.create({
+const styles = {
     itemContainer: {
         display: "flex",
-        marginBottom: 140,
         borderBottomColor: "#e5e5e5",
         borderBottomWidth: 3,
-        padding: 20
+        padding: 20,
+
+    },
+    itemSummaryWrapper: {
+        backgroundColor: "#f7f4f4",
+        marginBottom: 20
     },
     button: {
-        backgroundColor: '#030F26',
-        marginTop: 10,
-        marginBottom: 30,
-        height: 20
+        backgroundColor: "#ece8e8",
+        height: 30
     }
-})
+}
+
 
 
 

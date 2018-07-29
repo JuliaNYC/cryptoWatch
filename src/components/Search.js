@@ -1,64 +1,72 @@
 import React from "React";
-import { View, TextInput } from 'react-native'
-import Icon from 'react-native-vector-icons/FontAwesome';
+import {View, TextInput, TouchableOpacity} from 'react-native'
+import IconDelete from 'react-native-vector-icons/MaterialCommunityIcons';
+import IconSearch from 'react-native-vector-icons/FontAwesome';
 
-const Search = () => {
-    return  (
-        <View style={styles.container}>
-            <Icon style={styles.searchIcon} name="search" size={30} color="#030F26"/>
-        <TextInput
-            style={styles.searchBar}
-            placeholder='Search'
-        >
-            <Icon style={styles.delete} name="backspace" size={30} color="#030F26"/>
-        </TextInput>
+export default class Search extends React.Component {
+    state = {
+        input: "",
+        showDeleteButton: false
+    }
 
-        </View>
+    renderDeleteButton = () => {
+        if (this.state.showDeleteButton) {
+            return (
+                <TouchableOpacity onPress={this.clearSearchField}>
+                    <IconDelete style={styles.clearIcon} name="backspace" size={25} color="#c5c1c1"/>
+                </TouchableOpacity>
+            )
+        } else {
+            return null;
+        }
+
+    }
+
+    clearSearchField = () => {
+        this.setState({input: " "})
+        this.props.onChangeText("")
+    }
+
+    render() {
+        return (
+            <View style={styles.container}>
+                <IconSearch style={styles.searchIcon} name="search" size={20} color="#c5c1c1"/>
+                <TextInput
+                    style={styles.searchBar}
+                    placeholder='Search'
+                    placeholderTextColor="#908c8c"
+                    autoCorrect={false}
+                    value={this.state.input}
+                    onChangeText={(e) => this.props.onChangeText(e)}
+                    onFocus={() => this.setState({showDeleteButton: true})}
+                />
+                {this.renderDeleteButton()}
+            </View>
         )
+    }
 
 }
-export default Search;
 
 const styles = {
     container: {
-      /*  flex: 1,
         flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'red',*/
-        flexDirection: 'row',
-        borderBottomWidth: 1,
-        borderColor: '#000',
-        paddingBottom: 10,
+        backgroundColor: "#f7f4f4",
+        borderRadius: 20,
+        paddingBottom: 5,
+        marginBottom: 25,
+        alignItems: "center"
     },
     searchBar: {
-        flex: 1,
-        borderColor: '#030F26',
-        borderWidth: 1,
-        color: "#030F26"
-        /*flex: 1,
-        paddingTop: 10,
-        paddingRight: 10,
-        paddingBottom: 10,
-        paddingLeft: 0,
-        backgroundColor: 'black',
-        color: '#424242',
-        borderColor: '#030F26',
-        borderWidth: 1,
-        width: "100%"*/
-      /*  height: 40,
-        width: "100%",
-        borderColor: '#030F26',
-        borderWidth: 1,
-        marginTop: 30,
-        marginBottom: 20,
-        textAlign: "center",
-        color: "#030F26"*/
+        flex: 2
     },
     searchIcon: {
-       // padding: 10,
+        flex: 1,
+        padding: 5,
+        marginLeft: 15
     },
-    delete: {
-        flex: 2
+    clearIcon: {
+        flex: 1,
+        padding: 5,
+        marginRight: 10
     }
 }

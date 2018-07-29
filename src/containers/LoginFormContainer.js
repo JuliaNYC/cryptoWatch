@@ -61,9 +61,9 @@ class LoginFormContainer extends React.Component {
 
         return (
             <View style={styles.container}>
-
-                <Text>{showLoginForm ? "Please Log In" : "Please Sign Up"}</Text>
-
+            <View style={showLoginForm ? styles.loginTitleWrapper : styles.signupTitleWrapper}>
+                <Text style={styles.title}>{showLoginForm ? "Please Log In" : "Please Sign Up"}</Text>
+            </View>
                 <LoginOrSignupWithEmail
                     email={this.props.email}
                     password={this.props.password}
@@ -76,8 +76,18 @@ class LoginFormContainer extends React.Component {
                 </View>
 
                 <View style={styles.loginSignUpNavigation}>
-                    <Button
+                  {/*  <Button
                         title={showLoginForm ? "Go Sign Up" : "Go Log In"}
+                        color="white"
+                        onPress={() => this.setState({showLoginForm: !showLoginForm})}
+                    />*/}
+                    <Button
+                        title={"Go Log In"}
+                        color="white"
+                        onPress={() => this.setState({showLoginForm: !showLoginForm})}
+                    />
+                    <Button
+                        title={"Go Sign Up"}
                         color="white"
                         onPress={() => this.setState({showLoginForm: !showLoginForm})}
                     />
@@ -111,6 +121,15 @@ const styles = StyleSheet.create({
     container: {
         margin: 30
     },
+    title: {
+        textAlign: "center"
+    },
+    loginTitleWrapper: {
+        backgroundColor: "#5ac6dd"
+    },
+    signupTitleWrapper: {
+        backgroundColor: "#99ff52"
+    },
     loginButton: {
         backgroundColor: "#5ac6dd",
         borderRadius: 10,
@@ -120,6 +139,8 @@ const styles = StyleSheet.create({
         marginTop: 10
     },
     loginSignUpNavigation: {
+        display: "flex",
+        flexDirection: "row",
         backgroundColor: "#99ff52",
         marginTop: 40
     },

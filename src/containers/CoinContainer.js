@@ -11,7 +11,6 @@ import {
     ScrollView
 } from "react-native";
 import _ from "lodash";
-import {SearchBar} from 'react-native-elements'
 import CoinItem from "../components/CoinItemWizard/CoinItem";
 import Filters from "../components/Filters";
 import Search from "../components/Search";
@@ -25,8 +24,7 @@ class CoinContainer extends React.Component {
 
     state = {
         page: 0,
-        sortedBy: undefined,
-        input: ""
+        sortedBy: undefined
     }
 
     componentDidMount() {
@@ -63,12 +61,12 @@ class CoinContainer extends React.Component {
         })
     }
 
-    renderLoadMoreButton = () => {
-        return <Button
+    renderLoadMoreButton = () => (
+        <Button
             title="Load more"
             onPress={this.loadMoreData}
         />
-    }
+    )
 
     filterResults = (input) => {
         this.props.searchCoins(input)
@@ -86,7 +84,6 @@ class CoinContainer extends React.Component {
     }
 
     render() {
-        console.warn("renderrrrr 222",this.props.watchedCoinsById)
         return (
             <View style={styles.container}>
                 {this.props.isFetching ?
@@ -98,13 +95,9 @@ class CoinContainer extends React.Component {
                 {this.props.hasError ?
                     <View><Text>Sorry, currently out of service :(</Text></View> :
                     <View>
-                        <SearchBar
-                            lightTheme
-                            clearIcon
-                            placeholder='Type Here...'
+                        <Search
                             onChangeText={this.filterResults}
                         />
-                        <Search/>
                         <Filters
                             fetchCoinData={this.props.fetchCoinData}
                             setInitialSortParam={this.setInitialSortParam}
@@ -127,8 +120,8 @@ class CoinContainer extends React.Component {
 
 mapStateToProps = state => {
     const {data} = state.coins;
- //   const watchList = _.map(_.values(state.watchList.coins), "coin")
-    const watchedCoinsById =   _.map( _.map(_.values(state.watchList.coins), "coin"), "id");
+    //   const watchList = _.map(_.values(state.watchList.coins), "coin")
+    const watchedCoinsById = _.map(_.map(_.values(state.watchList.coins), "coin"), "id");
 
     return {
         isFetching: state.coins.isFetching,

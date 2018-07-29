@@ -56,9 +56,9 @@ const styles = {
             },
     button: {
 
-        backgroundColor: '#030F26',
+        backgroundColor: '#5ac6dd',
         height: 30,
-        width: 95
+        width: 98
     }
 
     };
