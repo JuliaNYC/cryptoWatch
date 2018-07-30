@@ -18,15 +18,16 @@ export default class WatchedItem extends React.Component {
 
     render() {
         const {name, symbol} = this.props.coin;
+        const {container, symbolStyle, nameStyle, iconStyle} = styles;
         return (
-            <View>
-                <Text>{symbol}</Text>
-                <Text>{name}</Text>
-                <Button onPress={this.getCoin}>
+            <View style={container}>
+                <Text style={symbolStyle}> {symbol} </Text>
+                <Text style={nameStyle}> {name} </Text>
+                <Button style={iconStyle} onPress={this.getCoin}>
                     <Icon
                         name={this.state.showDetailView ? "times-circle" : "info-circle"}
-                        size={30}
-                        color="#030F26"
+                        size={25}
+                        color="#5ac6dd"
                     />
                 </Button>
                 <View>
@@ -36,5 +37,25 @@ export default class WatchedItem extends React.Component {
                 </View>
             </View>
         )
+    }
+}
+
+const styles = {
+    container: {
+        flexDirection: "row",
+       justifyContent: "space-around",
+        backgroundColor: "red",
+        marginTop: 3,
+        borderBottomColor: "#f7f4f4",
+        borderWidth: 1
+    },
+    symbolStyle: {
+       // flex: 1
+    },
+    nameStyle: {
+       // flex: 2
+    },
+    iconStyle: {
+      //  flex: 1
     }
 }

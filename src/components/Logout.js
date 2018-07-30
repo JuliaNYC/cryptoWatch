@@ -45,7 +45,7 @@ const styles = {
         marginRight: 15
     },
     button: {
-        backgroundColor: "#FA9702",
+        backgroundColor: "#5ac6dd",
         height: 40,
         borderRadius: 10,
         fontSize: 20

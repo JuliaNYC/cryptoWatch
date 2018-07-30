@@ -7,22 +7,22 @@ import {
 import Button from "./Button";
 
 const Filters = ({fetchCoinData, resetState, resetPageToOne, setInitialSortParam}) => {
-
+ const {container, button, title} = styles;
     return (
-        <View style={styles.container}>
+        <View style={container}>
             <Button
-                buttonStyle={styles.button}
+                buttonStyle={button}
                 onPress={() => {
                     resetState()
                     fetchCoinData(0, 'percent_change_24h')
                     resetPageToOne()
                     setInitialSortParam('percent_change_24h')
                 }}
-                >
-                24 Hrs %
+            >
+                <Text style={title}> 24 Hrs % </Text>
             </Button>
             <Button
-                buttonStyle={styles.button}
+                buttonStyle={button}
                 onPress={() => {
                     resetState()
                     fetchCoinData(0, 'volume_24h')
@@ -30,17 +30,17 @@ const Filters = ({fetchCoinData, resetState, resetPageToOne, setInitialSortParam
                     setInitialSortParam('volume_24h')
                 }}
             >
-                24 Hrs Volume %
+                <Text style={title}>24 Hrs Volume %</Text>
             </Button>
             <Button
-                buttonStyle={styles.button}
+                buttonStyle={button}
                 onPress={() => {
                     resetState()
                     fetchCoinData(0, 'rank')
                     resetPageToOne()
                 }}
             >
-                Highest Rank
+                <Text style={title}> Highest Rank </Text>
             </Button>
         </View>
     )
@@ -49,16 +49,20 @@ const Filters = ({fetchCoinData, resetState, resetPageToOne, setInitialSortParam
 export default Filters;
 
 const styles = {
-        container: {
-            flexDirection: "row",
-            justifyContent: "space-between",
-            marginBottom: 15
-            },
+    container: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        marginBottom: 25
+    },
     button: {
 
-        backgroundColor: '#5ac6dd',
+        backgroundColor: '#f7f4f4',
         height: 30,
-        width: 99
+        width: 103
+    },
+    title: {
+        fontSize: 12,
+        color: "#848080"
     }
 
-    };
+};

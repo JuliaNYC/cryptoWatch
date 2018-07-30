@@ -30,9 +30,13 @@ export default class App extends Component<Props> {
     render() {
         console.warn("user in app" )
         return (
+
             <Provider store={Store}>
+
                     <RouterWrapper />
+
             </Provider>
+
         );
     }
 }

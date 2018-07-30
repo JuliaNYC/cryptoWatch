@@ -12,7 +12,6 @@ const AddCoinToWatchList = ({addCoinToWatch, added, coin: {id, symbol, name}}) =
     const renderIcon = () => {
         if (added) {
             return (
-                <View>
                     <Icon
                         style={styles.icon}
                         name="check"
@@ -21,7 +20,6 @@ const AddCoinToWatchList = ({addCoinToWatch, added, coin: {id, symbol, name}}) =
                     >
                         <Text style={styles.title}>Watching {name}</Text>
                     </Icon>
-                </View>
             )
         } else {
             return (
@@ -50,6 +48,7 @@ export default AddCoinToWatchList;
 const styles = {
     icon: {
         textAlign: "center",
+        marginTop: 10,
         padding: 10
     },
     title: {

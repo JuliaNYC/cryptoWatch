@@ -17,7 +17,7 @@ import Loading from "./components/Loading";
 import Logout from "./components/Logout";
 
 const TabIcon = ({iconName, selected, title, focused}) => (
-    <Icon name={iconName} size={30} color={focused ? "#FA9702" : "#5ac6dd"}/>
+    <Icon name={iconName} size={30} color={focused ? "#848080" : "#5ac6dd"}/>
 )
 
 export const RouterWrapper = () => (
@@ -56,15 +56,6 @@ export const RouterWrapper = () => (
                     />
                 </Scene>
 
-                <Scene
-                    key="logout"
-                    iconName='user'
-                    icon={TabIcon}>
-                    <Scene
-                        key="auth-logout"
-                        component={Logout}
-                    />
-                </Scene>
 
                {/* <Scene
                     key="search"
@@ -82,6 +73,15 @@ export const RouterWrapper = () => (
                     <Scene
                         key="watch"
                         component={WatchCoinsListContainer}
+                    />
+                </Scene>
+                <Scene
+                    key="logout"
+                    iconName='user'
+                    icon={TabIcon}>
+                    <Scene
+                        key="auth-logout"
+                        component={Logout}
                     />
                 </Scene>
             </Scene>

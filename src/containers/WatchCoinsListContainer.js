@@ -34,7 +34,7 @@ class WatchCoinsListContainer extends React.Component {
 
     render() {
         return (
-            <View>
+            <View style={styles.container}>
                 <Text>Watch Coins</Text>
                 <FlatList
                     data={this.props.coins}
@@ -57,3 +57,13 @@ mapStateToProps = state => {
 
 export default connect(mapStateToProps,
     {fetchWatchedCoins, fetchWatchedCoin})(WatchCoinsListContainer)
+
+styles= {
+    container: {
+      //  backgroundColor: "blue"
+        flex: 1,
+        backgroundColor: "white",
+        padding: 25,
+       // paddingTop: ( Platform.OS === 'ios' ) ? 20 : 0
+    }
+}

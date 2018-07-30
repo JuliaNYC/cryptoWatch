@@ -34,7 +34,7 @@ export default class Search extends React.Component {
                 <TextInput
                     style={styles.searchBar}
                     placeholder='Search'
-                    placeholderTextColor="#908c8c"
+                    placeholderTextColor="#848080"
                     autoCorrect={false}
                     value={this.state.input}
                     onChangeText={(e) => this.props.onChangeText(e)}
