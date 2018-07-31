@@ -2,7 +2,7 @@ import React from "react";
 import {View, Text, StyleSheet} from "react-native";
 
 const CryptoCoinInfo = (props) => {
-
+console.warn("infooooooooooo props", props)
     return (
         <View style={styles.infoContainer}>
             <Text style={styles.title}> DETAILS</Text>

@@ -93,7 +93,7 @@ class CoinContainer extends React.Component {
             <View style={styles.container}>
                 {this.props.isFetching ?
                     <View>
-                        <ActivityIndicator size="large" color="#0000ff"/>
+                        <ActivityIndicator size="large" color="#c5c1c1"/>
                     </View>
                     : null
                 }
@@ -125,7 +125,6 @@ class CoinContainer extends React.Component {
 
 mapStateToProps = state => {
     const {data} = state.coins;
-    //   const watchList = _.map(_.values(state.watchList.coins), "coin")
     const watchedCoinsById = _.map(_.map(_.values(state.watchList.coins), "coin"), "id");
 
     return {

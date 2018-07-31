@@ -2,37 +2,59 @@ import React from "react";
 import {View, Text} from "react-native";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Button from "./Button";
-import WatchedItemDetailView from "./WatchedItemDetailView";
+import DetailViewWrapper from "./CoinItemWizard/CoinItemDetailView/Wrapper";
+import CoinItemSummary from "./CoinItemWizard/CoinItemSummary";
 
 export default class WatchedItem extends React.Component {
     state = {
         showDetailView: false
     }
 
-    getCoin = () => {
-        this.props.getCoin(this.props.coin.id)
+    //hier wäre die action aus WatchCoinsListContainer aufgerufen worden (einzelner coin per ID requested)
+    /*getCoin = () => {
+        this.props.getCoin(this.props.coinSummary.id)
+        this.setState({
+            showDetailView: !this.state.showDetailView
+        })
+    }*/
+
+    setShowDetailView = () => {
         this.setState({
             showDetailView: !this.state.showDetailView
         })
     }
 
     render() {
-        const {name, symbol} = this.props.coin;
-        const {container, symbolStyle, nameStyle, iconStyle} = styles;
+        const {coin: {name, symbol}} = this.props;
+        const {container, wrapper, summaryWrapper, detailsViewWrapper, symbolStyle, nameStyle, iconStyle} = styles;
+
         return (
+
             <View style={container}>
-                <Text style={symbolStyle}> {symbol} </Text>
-                <Text style={nameStyle}> {name} </Text>
-                <Button style={iconStyle} onPress={this.getCoin}>
-                    <Icon
-                        name={this.state.showDetailView ? "times-circle" : "info-circle"}
-                        size={25}
-                        color="#5ac6dd"
-                    />
-                </Button>
+                <View style={wrapper}>
+                    <Text style={symbolStyle}> {symbol} </Text>
+                    <Text style={nameStyle}> {name} </Text>
+                   {/* hier wäre der aufruf der getCoin function*/}
+                    {/*<Button style={iconStyle} onPress={this.getCoin}>*/}
+                    <Button style={iconStyle} onPress={this.setShowDetailView}>
+                        <Icon
+                            name={this.state.showDetailView ? "times-circle" : "info-circle"}
+                            size={25}
+                            color="#5ac6dd"
+                        />
+                    </Button>
+                </View>
+
                 <View>
                     {this.state.showDetailView ?
-                        <WatchedItemDetailView coin={this.props.coin}/>
+                        <View style={detailsViewWrapper}>
+                            <View style={summaryWrapper}>
+                                <CoinItemSummary coin={this.props.coin}/>
+                            </View>
+                            <View>
+                                <DetailViewWrapper coin={this.props.coin}/>
+                            </View>
+                        </View>
                         : null}
                 </View>
             </View>
@@ -42,20 +64,43 @@ export default class WatchedItem extends React.Component {
 
 const styles = {
     container: {
-        flexDirection: "row",
-       justifyContent: "space-around",
-        backgroundColor: "red",
+        display: "flex",
+        width: "100%",
         marginTop: 3,
-        borderBottomColor: "#f7f4f4",
-        borderWidth: 1
+        backgroundColor: "#f7f4f4",
+    },
+    wrapper: {
+        flexDirection: "row"
+    },
+    summaryWrapper: {
+        marginLeft: 10
+    },
+    detailsViewWrapper: {
+        display: "flex",
+        borderBottomColor: "#e5e5e5",
+        borderBottomWidth: 3,
+        marginTop: 20,
+        marginLeft: -7
     },
     symbolStyle: {
-       // flex: 1
+        flexGrow: 1
     },
     nameStyle: {
-       // flex: 2
+        flexGrow: 2
     },
     iconStyle: {
-      //  flex: 1
+        flexGrow: 1
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+

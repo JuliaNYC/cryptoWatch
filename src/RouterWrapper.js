@@ -68,6 +68,7 @@ export const RouterWrapper = () => (
                 </Scene>*/}
                 <Scene
                     key="watch"
+                    title="Watch Coins"
                     iconName='eye'
                     icon={TabIcon}>
                     <Scene
