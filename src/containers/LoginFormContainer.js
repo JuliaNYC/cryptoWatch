@@ -9,6 +9,7 @@ import {
 } from "react-native";
 
 import {emailChanged, passwordChanged, loginUser, signUpUser} from "../actions/AuthAction";
+import FacebookLogin from "../components/FacebookLogin";
 import LoginOrSignupWithEmail from "../components/LoginOrSignupWithEmail";
 
 class LoginFormContainer extends React.Component {
@@ -76,11 +77,6 @@ class LoginFormContainer extends React.Component {
                 </View>
 
                 <View style={styles.loginSignUpNavigation}>
-                  {/*  <Button
-                        title={showLoginForm ? "Go Sign Up" : "Go Log In"}
-                        color="white"
-                        onPress={() => this.setState({showLoginForm: !showLoginForm})}
-                    />*/}
                     <Button
                         title={"Go Log In"}
                         color="white"
@@ -96,6 +92,10 @@ class LoginFormContainer extends React.Component {
                 <Text>
                     {this.renderError()}
                 </Text>
+
+                <View>
+                    <FacebookLogin />
+                </View>
 
             </View>
         )

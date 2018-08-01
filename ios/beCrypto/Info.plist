@@ -66,5 +66,29 @@
 		<string>SimpleLineIcons.ttf</string>
 		<string>Zocial.ttf</string>
 	</array>
+  
+  
+  <key>CFBundleURLTypes</key>
+  <array>
+    <dict>
+      <key>CFBundleURLSchemes</key>
+      <array>
+        <string>fb221457465375233</string>
+      </array>
+    </dict>
+  </array>
+  <key>FacebookAppID</key>
+  <string>221457465375233</string>
+  <key>FacebookDisplayName</key>
+  <string>cryptoWatch</string>
+  
+  <key>LSApplicationQueriesSchemes</key>
+  <array>
+    <string>fbapi</string>
+    <string>fb-messenger-share-api</string>
+    <string>fbauth2</string>
+    <string>fbshareextension</string>
+  </array>
+  
 </dict>
 </plist>

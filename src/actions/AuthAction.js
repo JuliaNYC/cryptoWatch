@@ -12,10 +12,12 @@ import {
     REQUEST_SIGNUP_USER,
     SIGNUP_USER_SUCCESS,
     SIGNUP_USER_FAIL,
-    IS_USER_LOGGED_IN
+    IS_USER_LOGGED_IN,
+    FACEBOOK_LOGIN_SUCCESS
 } from "../utils/Constants.js";
 import {Actions} from 'react-native-router-flux';
 import firebase from "firebase";
+import {AsyncStorage} from "react-native";
 
 export const emailChanged = (text) => {
     return {
@@ -97,4 +99,9 @@ export const logoutUser = () => {
                 })
             })
     }
+}
+
+
+export const facebookLogin = () => {
+
 }
