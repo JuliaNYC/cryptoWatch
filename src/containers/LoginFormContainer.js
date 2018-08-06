@@ -3,14 +3,16 @@ import {connect} from "react-redux";
 import {
     View,
     Text,
-    Button,
+    /*  Button,*/
     ActivityIndicator,
     StyleSheet
 } from "react-native";
 
+import Button from "../components/Button";
 import {emailChanged, passwordChanged, loginUser, signUpUser} from "../actions/AuthAction";
 import FacebookLogin from "../components/FacebookLogin";
 import LoginOrSignupWithEmail from "../components/LoginOrSignupWithEmail";
+import LoginWrapper from "../components/LoginWrapper";
 
 class LoginFormContainer extends React.Component {
     state = {
@@ -40,31 +42,30 @@ class LoginFormContainer extends React.Component {
         }
         return (
             <Button
-                title="Submit"
-                color="white"
                 onPress={this.state.showLoginForm ? this.onLogin : this.onSignup}
-            />
+            >
+                <Text style={styles.submit}>{this.state.showLoginForm ? "LOG IN" : "REGISTER"}</Text>
+            </Button>
         )
     }
 
     renderError = () => {
         if (this.props.error) {
-            return (
-                <View>
-                    <Text style={styles.errorMsg}>{this.props.error}</Text>
-                </View>
-            )
+            return <Text style={styles.errorMsg}>{this.props.error}</Text>
         }
     }
 
-    render() {
-        const {showLoginForm} = this.state;
+    setShowLoginForm = () => {
+        this.setState({showLoginForm: !this.state.showLoginForm})
+    }
 
+    render() {
         return (
             <View style={styles.container}>
-            <View style={showLoginForm ? styles.loginTitleWrapper : styles.signupTitleWrapper}>
-                <Text style={styles.title}>{showLoginForm ? "Please Log In" : "Please Sign Up"}</Text>
-            </View>
+                <LoginWrapper
+                    setShowLoginForm={this.setShowLoginForm}
+                />
+
                 <LoginOrSignupWithEmail
                     email={this.props.email}
                     password={this.props.password}
@@ -76,25 +77,13 @@ class LoginFormContainer extends React.Component {
                     {this.renderButton()}
                 </View>
 
-                <View style={styles.loginSignUpNavigation}>
-                    <Button
-                        title={"Go Log In"}
-                        color="white"
-                        onPress={() => this.setState({showLoginForm: !showLoginForm})}
-                    />
-                    <Button
-                        title={"Go Sign Up"}
-                        color="white"
-                        onPress={() => this.setState({showLoginForm: !showLoginForm})}
-                    />
-                </View>
-
-                <Text>
-                    {this.renderError()}
-                </Text>
 
                 <View>
-                    <FacebookLogin />
+                    {this.renderError()}
+                </View>
+
+                <View>
+                    <FacebookLogin/>
                 </View>
 
             </View>
@@ -116,7 +105,7 @@ const mapStateToProps = ({auth}) => {
 export default connect(mapStateToProps,
     {emailChanged, passwordChanged, loginUser, signUpUser})(LoginFormContainer)
 
-const styles = StyleSheet.create({
+const styles = {
 
     container: {
         margin: 30
@@ -125,10 +114,12 @@ const styles = StyleSheet.create({
         textAlign: "center"
     },
     loginTitleWrapper: {
-        backgroundColor: "#5ac6dd"
+        backgroundColor: "#5ac6dd",
+        marginTop: 30
     },
     signupTitleWrapper: {
-        backgroundColor: "#99ff52"
+        backgroundColor: "#99ff52",
+        marginTop: 30
     },
     loginButton: {
         backgroundColor: "#5ac6dd",
@@ -138,16 +129,16 @@ const styles = StyleSheet.create({
         marginLeft: 30,
         marginTop: 10
     },
-    loginSignUpNavigation: {
-        display: "flex",
-        flexDirection: "row",
-        backgroundColor: "#99ff52",
-        marginTop: 40
-    },
     errorMsg: {
         color: "red",
         marginLeft: 100,
         marginTop: 25,
         marginBottom: 10
+    },
+    submit: {
+        color: "black",
+        paddingTop: 25,
+        fontSize: 16,
+        top: 30
     }
-})
+}

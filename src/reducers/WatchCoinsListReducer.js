@@ -1,3 +1,4 @@
+/*
 import {
     FETCH_WATCHED_COINS_SUCCESS,
     FETCH_WATCHED_COIN,
@@ -18,7 +19,7 @@ export default (state = initialState, action) => {
            console.warn("COINSSSSS", action.payload)
            return {
                ...state,
-           /*    isFetchingCoin: false,*/
+           /!*    isFetchingCoin: false,*!/
              //  coins: {...state.coins, ...action.payload}
                coins: {...state.coins, ...action.payload}
            }
@@ -32,10 +33,10 @@ export default (state = initialState, action) => {
        case FETCH_WATCHED_COIN_SUCCESS:
            console.warn("action in watch", action.payload)
            return {
-               ...state,
+              // ...state,
                isFetchingCoin: false,
              //  coin: {...action.payload}
-               coin: action.payload
+               coin: {...action.payload}
            }
        case FETCH_WATCHED_COIN_ERR:
            return {
@@ -48,53 +49,38 @@ export default (state = initialState, action) => {
            return state;
    }
 }
-
-/*
+*/
 
 import {
+    FETCH_WATCHED_COINS,
     FETCH_WATCHED_COINS_SUCCESS,
-    FETCH_WATCHED_COIN,
-    FETCH_WATCHED_COIN_SUCCESS,
-    FETCH_WATCHED_COIN_ERR} from "../utils/Constants";
+    FETCH_WATCHED_COINS_ERR} from "../utils/Constants";
 
 const initialState = {
-    coins: {},
-    isFetchingCoin: null,
+    isFetchingCoins: null,
     hasError: false,
     errorMsg: null,
-    coin: {}
+    coins: {}
 }
 
 export default (state = initialState, action) => {
     switch (action.type) {
+        case FETCH_WATCHED_COINS:
+            return {
+                ...state,
+                isFetchingCoins: true
+            }
         case FETCH_WATCHED_COINS_SUCCESS:
-            console.warn("COINSSSSS", action.payload)
             return {
                 ...state,
-                /!*    isFetchingCoin: false,*!/
-                  coins: {...state.coins, ...action.payload}
-               // coins: {...state.coins, [action.payload.id]: action.payload
-                }
+                isFetchingCoins: false,
+                hasError: false,
+                coins: {...state.coins, ...action.payload}
             }
-
-
-        case FETCH_WATCHED_COIN:
+        case FETCH_WATCHED_COINS_ERR:
             return {
                 ...state,
-                isFetchingCoin: true
-            }
-        case FETCH_WATCHED_COIN_SUCCESS:
-            console.warn("action in watch", action.payload)
-            return {
-                ...state,
-                isFetchingCoin: false,
-                //  coin: {...action.payload}
-                coin: action.payload
-            }
-        case FETCH_WATCHED_COIN_ERR:
-            return {
-                ...state,
-                isFetchingCoin: false,
+                isFetchingCoins: false,
                 hasError: true,
                 errorMsg: action.err
             }
@@ -102,6 +88,3 @@ export default (state = initialState, action) => {
             return state;
     }
 }
-
-
-*/

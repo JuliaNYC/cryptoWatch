@@ -15,6 +15,7 @@ import CoinContainer from "./containers/CoinContainer";
 import WatchCoinsListContainer from "./containers/WatchCoinsListContainer";
 import Loading from "./components/Loading";
 import Logout from "./components/Logout";
+import WatchedItemDetailView from "./components/WatchedItemDetailView";
 
 const TabIcon = ({iconName, selected, title, focused}) => (
     <Icon name={iconName} size={30} color={focused ? "#848080" : "#5ac6dd"}/>
@@ -23,6 +24,8 @@ const TabIcon = ({iconName, selected, title, focused}) => (
 export const RouterWrapper = () => (
     <Router>
         <Scene key="root" hideNavBar>
+
+
             <Scene key="loader">
                 <Scene
                     key="loading"
@@ -31,6 +34,8 @@ export const RouterWrapper = () => (
 
                 </Scene>
             </Scene>
+
+
             <Scene key="auth" hideNavBar>
                 <Scene
                     key="login"
@@ -44,37 +49,32 @@ export const RouterWrapper = () => (
                 tabs
                 navigationBarStyle={styles.navigationBar}
                 labelStyle={styles.title}>
+
+
                 <Scene
                     key="main"
                     title="Home"
                     iconName='home'
                     icon={TabIcon}
-                    titleStyle={styles.title}>
+                    titleStyle={styles.title}
+
+                >
                     <Scene
                         key="main-cryptoCoins"
+                        title="Home"
                         component={CoinContainer}
                     />
                 </Scene>
 
-
-               {/* <Scene
-                    key="search"
-                    iconName='search'
-                    icon={TabIcon}>
-                    <Scene
-                        key="search"
-                        component={FilterAndSearchContainer}
-                    />
-                </Scene>*/}
                 <Scene
                     key="watch"
                     title="Watch Coins"
                     iconName='eye'
-                    icon={TabIcon}>
-                    <Scene
-                        key="watch"
-                        component={WatchCoinsListContainer}
-                    />
+                    icon={TabIcon}
+
+                >
+                    <Scene key="watch" component={WatchCoinsListContainer} />
+                    <Scene key="watchedItem" component={WatchedItemDetailView} />
                 </Scene>
                 <Scene
                     key="logout"
@@ -86,6 +86,8 @@ export const RouterWrapper = () => (
                     />
                 </Scene>
             </Scene>
+
+         {/*   </Scene>*/}
 
         </Scene>
     </Router>

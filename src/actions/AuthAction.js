@@ -13,20 +13,29 @@ import {
     SIGNUP_USER_SUCCESS,
     SIGNUP_USER_FAIL,
     IS_USER_LOGGED_IN,
-    FACEBOOK_LOGIN_SUCCESS
+    FACEBOOK_LOGIN_SUCCESS,
+    FACEBOOK_LOGIN_FAIL
 } from "../utils/Constants.js";
 import {Actions} from 'react-native-router-flux';
 import firebase from "firebase";
 import {AsyncStorage} from "react-native";
+const FBSDK = require('react-native-fbsdk');
 
-export const emailChanged = (text) => {
+const {
+    LoginManager,
+    AccessToken,
+} = FBSDK;
+
+
+
+export const emailChanged = text => {
     return {
         type: EMAIL_CHANGED,
         payload: text
     }
 }
 
-export const passwordChanged = (text) => {
+export const passwordChanged = text => {
     return {
         type: PASSWORD_CHANGED,
         payload: text
@@ -60,13 +69,13 @@ const loginUserSuccess = (dispatch, user) => {
     Actions.main()
 }
 
-const loginUserFail = (dispatch) => {
+const loginUserFail = dispatch => {
     dispatch({
         type: LOGIN_USER_FAIL
     })
 }
 
-export const isUserLoggedIn = (props) => {
+export const isUserLoggedIn = () => {
     return (dispatch) => {
         dispatch({type: IS_USER_LOGGED_IN})
         firebase.auth().onAuthStateChanged(user => {
@@ -102,6 +111,139 @@ export const logoutUser = () => {
 }
 
 
-export const facebookLogin = () => {
-
+/*export const facebookLogin = async dispatch => {
+        let token = await AsyncStorage.getItem("fb_token");
+        if (token) {
+            dispatch({type: FACEBOOK_LOGIN_SUCCESS, payload: token})
+        } else {
+            logInToFaebook(dispatch)
+        }
 }
+
+const logInToFaebook = async dispatch => {
+    /!*let {type, token} = await LoginManager.logInWithReadPermissions("221457465375233", {
+        permissions: ["public_profile"]
+    });*!/
+   /!* let {type, token} = await LoginManager.logInWithReadPermissions(["public_profile"]);
+    if (type === "cancel") {
+        return dispatch({type: FACEBOOK_LOGIN_FAIL})
+    }*!/
+    let result = await LoginManager.logInWithReadPermissions(["public_profile"]);
+    console.warn("red", result)
+    if (type === "cancel") {
+        return dispatch({type: FACEBOOK_LOGIN_FAIL})
+    }
+
+    await AsyncStorage.setItem("fb_token", JSON.stringify(token));
+    dispatch({type: FACEBOOK_LOGIN_SUCCESS, payload: token})
+}*/
+
+/*export const facebookLogin =  () => {
+    return dispatch => {
+        let token = AsyncStorage.getItem("fb_token");
+        if (token) {
+            console.warn("nah")
+            dispatch({type: FACEBOOK_LOGIN_SUCCESS, payload: token})
+        } else {
+            console.warn("success")
+            dispatch({type: FACEBOOK_LOGIN_FAIL, payload: token})
+            // logInToFaebook(dispatch)
+        }
+    }
+}*/
+
+/*const logInToFaebook = async dispatch => {
+    /!*let {type, token} = await LoginManager.logInWithReadPermissions("221457465375233", {
+        permissions: ["public_profile"]
+    });*!/
+    /!* let {type, token} = await LoginManager.logInWithReadPermissions(["public_profile"]);
+     if (type === "cancel") {
+         return dispatch({type: FACEBOOK_LOGIN_FAIL})
+     }*!/
+    let result = await LoginManager.logInWithReadPermissions(["public_profile"]);
+    console.warn("red", result)
+    if (type === "cancel") {
+        return dispatch({type: FACEBOOK_LOGIN_FAIL})
+    }
+
+    await AsyncStorage.setItem("fb_token", JSON.stringify(token));
+    dispatch({type: FACEBOOK_LOGIN_SUCCESS, payload: token})
+}*/
+
+/*export const facebookLogin = () => {
+    return (dispatch) => {
+        LoginManager.logInWithReadPermissions(['public_profile'])
+            .then(
+                (result) => {
+                    if (result.isCancelled) {
+                       console.warn('Whoops!', 'You cancelled the sign in.');
+                    } else {
+                        console.warn("result", result)
+                        AccessToken.getCurrentAccessToken()
+                            .then((data) => {
+                            console.warn("data", data)
+                                const credential = firebase.auth.FacebookAuthProvider.credential(data.accessToken);
+                                firebase.auth().signInWithCredential(credential)
+                                    .then(loginUserSuccess(dispatch))
+                                    .catch((error) => {
+                                        loginUserFail(dispatch);
+                                })
+                              /!*  const credential = firebase.auth.FacebookAuthProvider.credential(data.accessToken);
+                                firebase.auth().signInWithCredential(credential)*!/
+                                //    .then(loginUserSuccess(dispatch))
+                                    /!*.catch((error) => {
+                                        loginSingUpFail(dispatch, error.message);
+                                    });*!/
+
+                                      //  alert(data.accessToken.toString())
+
+
+                            });
+                    }
+                }
+            );
+    };
+};*/
+
+
+export const facebookLogin = () => {
+    return (dispatch) => {
+        LoginManager.logInWithReadPermissions(['public_profile'])
+            .then(
+                (result) => {
+                    if (result.isCancelled) {
+                        Alert.alert('Whoops!', 'You cancelled the sign in.');
+                    } else {
+                        AccessToken.getCurrentAccessToken()
+                            .then((data) => {
+                                const credential = firebase.auth.FacebookAuthProvider.credential(data.accessToken);
+                                firebase.auth().signInAndRetrieveDataWithCredential(credential)
+                                    .then(loginUserSuccess(dispatch))
+                                    .catch((error) => {
+                                        loginUserFail(dispatch);
+                                    });
+                            });
+                    }
+                },
+                (error) => {
+                    Alert.alert('Sign in error', error);
+                },
+            );
+    };
+};
+
+/*
+
+export const facebookLogin =  () => {
+    return dispatch => {
+        let token = AsyncStorage.getItem("fb_token");
+        if (token) {
+            console.warn("nah")
+            dispatch({type: FACEBOOK_LOGIN_SUCCESS, payload: token})
+        } else {
+            console.warn("success")
+            dispatch({type: FACEBOOK_LOGIN_FAIL, payload: token})
+            // logInToFaebook(dispatch)
+        }
+    }
+}*/

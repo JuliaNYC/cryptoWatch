@@ -28,7 +28,7 @@ class CoinContainer extends React.Component {
     }
 
     componentDidMount() {
-        this.props.fetchWatchedCoins()
+       // this.props.fetchWatchedCoins()
         this.props.fetchCoinData(this.state.page);
         this.setPage()
     }
