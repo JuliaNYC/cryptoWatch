@@ -18,27 +18,17 @@ class WatchCoinsListContainer extends React.Component {
         this.props.fetchWatchedCoins()
     }
 
-   // keyExtractor = (item, index) => item.id.toString();
-    keyExtractor = (item, index) => index.toString();
-/*    renderItem = ({item}) => (
-       <WatchedItem
-            coin={item}
-            test={this.props.test}
-        />
-)*/
+    keyExtractor = (item, index) => item.coin.toString();
 
-    renderItem = ({item}) => {
-
-        console.warn("item", item)
-      return  <WatchedItem
+    renderItem = ({item}) => (
+        <WatchedItem
             coin={item.coin}
             uid={item.uid}
             test={this.props.test}
         />
-    }
+    )
 
     render() {
-        console.warn("coins", this.props.coins, this.props.test, typeof this.props.test)
         return (
             <View style={styles.container}>
                 {this.props.isFetchingCoins ?
@@ -46,11 +36,13 @@ class WatchCoinsListContainer extends React.Component {
                         <ActivityIndicator size="large" color="#c5c1c1"/>
                     </View>
                     : null}
-                <FlatList
-                    data={this.props.coins}
-                    keyExtractor={this.keyExtractor}
-                    renderItem={this.renderItem}
-                />
+                {this.props.coins.length > 0 ?
+                    <FlatList
+                        data={this.props.coins}
+                        keyExtractor={this.keyExtractor}
+                        renderItem={this.renderItem}
+                    /> : <Text>You are currently not wathing any coins!</Text>
+                }
             </View>
         )
     }
@@ -58,18 +50,16 @@ class WatchCoinsListContainer extends React.Component {
 
 mapStateToProps = state => {
     return {
-    coins: _.map(state.watchList.coins, (val, uid) => ({...val, uid})),
-     //   coins: _.map(_.values(state.watchList.coins), "coin"),
+        coins: _.map(state.watchList.coins, (val, uid) => ({...val, uid})),
         isFetchingCoins: state.watchList.isFetchingCoins
     }
 
 }
 
-
 export default connect(mapStateToProps,
     {fetchWatchedCoins, fetchWatchedCoin})(WatchCoinsListContainer)
 
-styles= {
+styles = {
     container: {
         flex: 1,
         backgroundColor: "white",
@@ -79,86 +69,3 @@ styles= {
         textAlign: "center"
     }
 }
-
-
-
-
-
-/*
-import React from "react";
-import {connect} from "react-redux";
-import {
-    View,
-    Text,
-    Button,
-    FlatList,
-    ActivityIndicator,
-    StyleSheet
-} from "react-native";
-import _ from "lodash";
-import {fetchWatchedCoins, fetchWatchedCoin} from "../actions/WatchCoinsListAction";
-import WatchedItem from "../components/WatchedItem";
-import filterData from '../selectors';
-
-class WatchCoinsListContainer extends React.Component {
-
-    componentDidMount() {
-        this.props.fetchWatchedCoins()
-    }
-
-    getCoin = (id) => {
-        console.warn("whyyyyyyyyyyyyyy called again fuck uuuuuu", id)
-        this.props.fetchWatchedCoin(id)
-    }
-
-    keyExtractor = (item, index) => item.id.toString();
-
-    renderItem = ({item}) => (
-        <WatchedItem
-            coinSummary={item}
-            theCoin={item.id == this.props.coin.id ? this.props.coin: null}
-            coinDetails={this.props.coin}
-            fetchWatchedCoin={this.props.fetchWatchedCoin}
-            getCoin={this.getCoin}
-        />
-    )
-
-    render() {
-        console.warn("one coin watch here", this.props.coin)
-        return (
-            <View style={styles.container}>
-                <FlatList
-
-                    data={this.props.coins}
-                    keyExtractor={this.keyExtractor}
-                    renderItem={this.renderItem}
-                />
-            </View>
-        )
-    }
-}
-
-mapStateToProps = state => {
-    return {
-        allCoins: filterData(state.coins.data, state.filters),
-        coins: _.map(_.values(state.watchList.coins), "coin"),
-        coin: state.watchList.coin,
-        isFetchingCoin: state.watchList.isFetchingCoin
-    }
-
-}
-
-
-export default connect(mapStateToProps,
-    {fetchWatchedCoins, fetchWatchedCoin})(WatchCoinsListContainer)
-
-styles= {
-    container: {
-        flex: 1,
-        backgroundColor: "white",
-        padding: 25
-    },
-    title: {
-        textAlign: "center"
-    }
-}*/

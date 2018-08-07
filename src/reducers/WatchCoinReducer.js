@@ -1,3 +1,4 @@
+/*
 import {
     FETCH_WATCHED_COIN,
     FETCH_WATCHED_COIN_SUCCESS,
@@ -34,4 +35,4 @@ case FETCH_WATCHED_COIN_ERR:
 default:
     return state;
 }
-}
+}*/

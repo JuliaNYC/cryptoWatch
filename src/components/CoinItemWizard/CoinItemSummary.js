@@ -1,5 +1,8 @@
 import React from "react";
-import {View, Text, StyleSheet} from "react-native";
+import {
+    Text,
+    View
+} from "react-native";
 import CryptoIcon from "react-native-crypto-icons";
 import {colors} from "../../utils/Constants";
 
@@ -13,19 +16,19 @@ const CoinItemSummary = ({coin}) => {
                 color = colors[0];
                 break;
             case (symbo.match(/[e-h]/i) || {}).input:
-                color= colors[1];
+                color = colors[1];
                 break;
             case (symbo.match(/[j-m]/i) || {}).input:
-                color= colors[2];
+                color = colors[2];
                 break;
             case (symbo.match(/[n-q]/i) || {}).input:
-                color= colors[3];
+                color = colors[3];
                 break;
             case (symbo.match(/[r-u]/i) || {}).input:
-                color= colors[4];
+                color = colors[4];
                 break;
             case (symbo.match(/[v-z]/i) || {}).input:
-                color= colors[5];
+                color = colors[5];
                 break;
         }
         return color;
@@ -33,7 +36,7 @@ const CoinItemSummary = ({coin}) => {
     }
 
     return (
-        <View style={styles.itemContainer}>
+        <View>
             <View style={styles.itemWrapper}>
                 <CryptoIcon name={symbol.toLowerCase()} style={{fontSize: 45, color: setIconColor()}}/>
 
@@ -61,10 +64,7 @@ const CoinItemSummary = ({coin}) => {
 export default CoinItemSummary;
 
 
-const styles = StyleSheet.create({
-    itemContainer: {
-       // backgroundColor: "red"
-    },
+const styles = {
     itemWrapper: {
         display: "flex",
         flexDirection: "row",
@@ -108,4 +108,4 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         marginLeft: 5
     }
-})
+}

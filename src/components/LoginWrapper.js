@@ -5,7 +5,6 @@ import {
     TextInput,
     TouchableOpacity
 } from "react-native";
-import {Icon} from 'react-native-elements'
 import Button from "./Button";
 
 export default class LoginWrapper extends React.Component {

@@ -1,11 +1,13 @@
 import React from "react";
-import {View, Text} from "react-native";
+import {
+    View,
+    Text
+} from "react-native";
 import {Actions} from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Button from "./Button";
 
 const WatchedItem = ({ uid, coin: {name, symbol, id}}) => {
-console.warn("test", uid)
    const showCoinInfo = () => {
 
         Actions.watchedCoin({id: id, uid: uid})

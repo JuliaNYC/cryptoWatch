@@ -5,7 +5,7 @@ const Header = () => {
     return (
         <View>
             <Text style={styles.header}>
-                <Text style={styles.title}>Crypto Watch</Text>
+                <Text style={styles.title}>Crypto Watchcccccc</Text>
             </Text>
         </View>
     )

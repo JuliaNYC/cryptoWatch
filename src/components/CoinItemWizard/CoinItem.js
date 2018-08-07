@@ -1,17 +1,15 @@
 import React from "react";
-import {View, Text} from "react-native";
+import {ActivityIndicator, Text, View} from "react-native";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Button from "../Button";
 import CoinItemSummary from "./CoinItemSummary";
 import DetailViewWrapper from "./CoinItemDetailView/Wrapper";
-import Spinner from "react-native-loading-spinner-overlay";
 
 export default class CoinItem extends React.Component {
 
-        state = {
-            showDetailView: false
-        }
-
+    state = {
+        showDetailView: false
+    }
 
     renderDetailView = () => {
         this.setState({
@@ -23,45 +21,37 @@ export default class CoinItem extends React.Component {
     renderButton = () => {
         if (this.state.loading) {
             return (
-                <Spinner
-                    visible={this.state.loading}
-                    textContent={"Loading..."}
-                    animation="fade"
-                />
+                <View>
+                    <Text>Loading...</Text>
+                    <ActivityIndicator size="large" color="#c5c1c1"/>
+                </View>
             )
         }
         return (
-              <Button
+            <Button
                 onPress={this.renderDetailView}
                 buttonStyle={styles.button}
             >
-                  <Icon
-                      name={this.state.showDetailView ? "times-circle" : "info-circle"}
-                      size={30}
-                      color="white"
-                  />
-
+                <Icon
+                    name={this.state.showDetailView ? "times-circle" : "info-circle"}
+                    size={30}
+                    color="white"
+                />
             </Button>
-
         )
-
     }
-
 
     render() {
         const {itemContainer, itemSummaryWrapper, button} = styles;
-
         return (
             <View styles={itemContainer}>
-
                 <View style={itemSummaryWrapper}>
-                <CoinItemSummary
-                    coin={this.props.coin}
-                />
-
-                <View style={button}>
-                    {this.renderButton()}
-                </View>
+                    <CoinItemSummary
+                        coin={this.props.coin}
+                    />
+                    <View style={button}>
+                        {this.renderButton()}
+                    </View>
                 </View>
                 {this.state.showDetailView ?
                     <DetailViewWrapper
@@ -72,12 +62,10 @@ export default class CoinItem extends React.Component {
                     />
                     : null
                 }
-
             </View>
         )
     }
 }
-
 
 const styles = {
     itemContainer: {
@@ -96,7 +84,3 @@ const styles = {
         height: 30
     }
 }
-
-
-
-

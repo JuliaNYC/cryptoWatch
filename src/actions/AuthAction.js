@@ -4,17 +4,15 @@ import {
     REQUEST_LOGIN_USER,
     LOGIN_USER_SUCCESS,
     LOGIN_USER_FAIL,
-
     REQUEST_LOGOUT_USER,
     LOGOUT_USER_SUCCESS,
     LOGOUT_USER_FAIL,
-
     REQUEST_SIGNUP_USER,
     IS_USER_LOGGED_IN
 } from "../utils/Constants.js";
-import {AsyncStorage} from "react-native";
-import {Actions} from 'react-native-router-flux';
 import firebase from "firebase";
+import {Actions} from 'react-native-router-flux';
+import {AsyncStorage} from "react-native";
 
 export const emailChanged = text => {
     return {
@@ -67,7 +65,6 @@ export const isUserLoggedIn = () => {
     return (dispatch) => {
         dispatch({type: IS_USER_LOGGED_IN})
         firebase.auth().onAuthStateChanged(user => {
-            console.warn("userr", user)
             if (user) {
                 Actions.main()
             } else {
@@ -88,7 +85,6 @@ export const logoutUser = () => {
                     type: LOGOUT_USER_SUCCESS
                 })
                 isUserLoggedIn()
-
             })
             .catch(() => {
                 dispatch({

@@ -1,25 +1,27 @@
 import React from "react";
-import {View, Text, StyleSheet} from "react-native";
+import {
+    Text,
+    View
+} from "react-native";
 
-const CryptoCoinInfo = (props) => {
-console.warn("infooooooooooo props", props)
+const CryptoCoinInfo = ({availableSupply, maxSupply, totalSupply}) => {
     return (
-        <View style={styles.infoContainer}>
+        <View>
             <Text style={styles.title}> DETAILS</Text>
 
             <View style={styles.infoWrapper}>
                 <Text style={styles.label}> Available Supply: </Text>
-                <Text style={styles.info}> {props.availableSupply} </Text>
+                <Text> {availableSupply} </Text>
             </View>
 
             <View style={styles.infoWrapper}>
                 <Text style={styles.label}> Max. Supply: </Text>
-                <Text style={styles.info}>{props.maxSupply}</Text>
+                <Text>{maxSupply}</Text>
             </View>
 
             <View style={styles.infoWrapper}>
                 <Text style={styles.label}> Total Supply: </Text>
-                <Text style={styles.info}>{props.totalSupply}</Text>
+                <Text>{totalSupply}</Text>
             </View>
         </View>
     )
@@ -28,8 +30,6 @@ console.warn("infooooooooooo props", props)
 export default CryptoCoinInfo;
 
 const styles = {
-    infoContainer: {},
-
     title: {
         textAlign: 'center',
         padding: 10,
@@ -41,8 +41,6 @@ const styles = {
         backgroundColor: "#ece8e8",
         marginTop: 3
     },
-
-    info: {},
     label: {
         fontWeight: "bold"
     }

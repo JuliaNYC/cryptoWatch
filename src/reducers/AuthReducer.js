@@ -18,7 +18,6 @@ const initialState = {
 }
 
 export default (state = initialState, action) => {
-    console.warn("reducer", state.user)
     switch (action.type) {
         case EMAIL_CHANGED:
             return {...state, email: action.payload};

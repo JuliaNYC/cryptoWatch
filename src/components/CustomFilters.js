@@ -5,7 +5,6 @@ import {
 } from "react-native";
 
 const CustomFilters = ({sortBy, loadMoreData}) => {
-console.warn("CustomFilters called")
     return (
         <View>
              <Button

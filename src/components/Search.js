@@ -1,5 +1,9 @@
 import React from "React";
-import {View, TextInput, TouchableOpacity} from 'react-native'
+import {
+    TextInput,
+    TouchableOpacity,
+    View
+} from 'react-native'
 import IconDelete from 'react-native-vector-icons/MaterialCommunityIcons';
 import IconSearch from 'react-native-vector-icons/FontAwesome';
 
@@ -19,7 +23,6 @@ export default class Search extends React.Component {
         } else {
             return null;
         }
-
     }
 
     clearSearchField = () => {

@@ -24,17 +24,13 @@ export default class App extends Component<Props> {
 
         }
         firebase.initializeApp(config)
-
     }
 
     render() {
-        console.warn("user in app" )
         return (
 
             <Provider store={Store}>
-
                     <RouterWrapper />
-
             </Provider>
 
         );

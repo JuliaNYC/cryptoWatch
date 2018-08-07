@@ -7,8 +7,8 @@ import {
 } from "react-native";
 import {connect} from "react-redux";
 import Icon from 'react-native-vector-icons/FontAwesome';
-import Button from "./Button";
 import {logoutUser} from "../actions/AuthAction";
+import Button from "./Button";
 
 const Logout = ({logoutUser}) => {
     const {logoutContainer, title, button, buttonText} = styles;
@@ -19,7 +19,7 @@ const Logout = ({logoutUser}) => {
                 onPress={() => logoutUser()}
             >
                 <Text style={buttonText}>
-                Logout
+                    Logout
                 </Text>
             </Button>
             <Text style={title}>See you soon

@@ -3,7 +3,6 @@ import {
     FETCH_COIN_DATA_SUCESS,
     FETCH_COIN_DATA_ERR,
     RESET_STATE
-
 } from "../utils/Constants.js";
 import CoinAPI from "../services/api/CoinAPI";
 
