@@ -1,10 +1,9 @@
 import React from "react";
-import {View, Text, TextInput, TouchbleOpacity} from "react-native";
+import {Text, TextInput, View, TouchbleOpacity} from "react-native";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Button from "./Button";
 
 const AddCoinToWatchList = ({addCoinToWatch, added, coin: {id, symbol, name}}) => {
-
     const addToWatch = () => {
         addCoinToWatch({id, symbol, name})
     }
@@ -12,14 +11,14 @@ const AddCoinToWatchList = ({addCoinToWatch, added, coin: {id, symbol, name}}) =
     const renderIcon = () => {
         if (added) {
             return (
-                    <Icon
-                        style={styles.icon}
-                        name="check"
-                        size={20}
-                        color="#5ac6dd"
-                    >
-                        <Text style={styles.title}>Watching {name}</Text>
-                    </Icon>
+                <Icon
+                    style={styles.icon}
+                    name="check"
+                    size={20}
+                    color="#5ac6dd"
+                >
+                    <Text style={styles.title}>Watching {name}</Text>
+                </Icon>
             )
         } else {
             return (

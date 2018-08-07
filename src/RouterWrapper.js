@@ -9,10 +9,11 @@ import {
 } from 'react-native';
 import {Scene, Router} from "react-native-router-flux";
 import Icon from 'react-native-vector-icons/FontAwesome';
-import FilterAndSearchContainer from "./containers/FilterAndSearchContainer";
-import LoginFormContainer from "./containers/LoginFormContainer";
+
 import CoinContainer from "./containers/CoinContainer";
-import WatchCoinsListContainer from "./containers/WatchCoinsListContainer";
+import LoginFormContainer from "./containers/LoginFormContainer";
+import WatchCoinsContainer from "./containers/WatchCoinsContainer";
+
 import Loading from "./components/Loading";
 import Logout from "./components/Logout";
 import WatchedItemDetailView from "./components/WatchedItemDetailView";
@@ -24,18 +25,13 @@ const TabIcon = ({iconName, selected, title, focused}) => (
 export const RouterWrapper = () => (
     <Router>
         <Scene key="root" hideNavBar>
-
-
             <Scene key="loader">
                 <Scene
                     key="loading"
                     component={Loading}
                     title="Crypto Watch">
-
                 </Scene>
             </Scene>
-
-
             <Scene key="auth" hideNavBar>
                 <Scene
                     key="login"
@@ -49,15 +45,12 @@ export const RouterWrapper = () => (
                 tabs
                 navigationBarStyle={styles.navigationBar}
                 labelStyle={styles.title}>
-
-
                 <Scene
                     key="main"
                     title="Home"
                     iconName='home'
                     icon={TabIcon}
                     titleStyle={styles.title}
-
                 >
                     <Scene
                         key="main-cryptoCoins"
@@ -65,16 +58,20 @@ export const RouterWrapper = () => (
                         component={CoinContainer}
                     />
                 </Scene>
-
                 <Scene
                     key="watch"
                     title="Watch Coins"
                     iconName='eye'
                     icon={TabIcon}
-
                 >
-                    <Scene key="watch" component={WatchCoinsListContainer} />
-                    <Scene key="watchedItem" component={WatchedItemDetailView} />
+                    <Scene
+                        key="watchedCoins"
+                        component={WatchCoinsContainer}
+                    />
+                    <Scene
+                        key="watchedCoin"
+                        component={WatchedItemDetailView}
+                    />
                 </Scene>
                 <Scene
                     key="logout"
@@ -86,17 +83,13 @@ export const RouterWrapper = () => (
                     />
                 </Scene>
             </Scene>
-
-         {/*   </Scene>*/}
-
         </Scene>
     </Router>
 );
 
 const styles = {
     navigationBar: {
-       /* backgroundColor: '#FA9702'*/
-        backgroundColor: 'white'
+        backgroundColor: '#5ac6dd'
     },
     title: {
         color: "black"

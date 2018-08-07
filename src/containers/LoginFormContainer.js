@@ -1,16 +1,13 @@
 import React from "react";
 import {connect} from "react-redux";
 import {
-    View,
-    Text,
-    /*  Button,*/
     ActivityIndicator,
-    StyleSheet
+    Text,
+    View
 } from "react-native";
 
 import Button from "../components/Button";
 import {emailChanged, passwordChanged, loginUser, signUpUser} from "../actions/AuthAction";
-import FacebookLogin from "../components/FacebookLogin";
 import LoginOrSignupWithEmail from "../components/LoginOrSignupWithEmail";
 import LoginWrapper from "../components/LoginWrapper";
 
@@ -80,10 +77,6 @@ class LoginFormContainer extends React.Component {
 
                 <View>
                     {this.renderError()}
-                </View>
-
-                <View>
-                    <FacebookLogin/>
                 </View>
 
             </View>

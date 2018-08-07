@@ -19,11 +19,9 @@ case FETCH_WATCHED_COIN:
             isFetchingCoin: true
         }
 case FETCH_WATCHED_COIN_SUCCESS:
-        console.warn("action in watch", action.payload)
     return {
          ...state,
         isFetchingCoin: false,
-        //  coin: {...action.payload}
         coin: {...action.payload}
     }
 case FETCH_WATCHED_COIN_ERR:

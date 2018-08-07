@@ -1,10 +1,13 @@
 import React from "react";
-import {View, Text, ActivityIndicator} from "react-native";
+import {ActivityIndicator, Text, View} from "react-native";
+import {connect} from "react-redux";
+import Icon from 'react-native-vector-icons/FontAwesome';
+import Button from "./Button";
 import DetailViewWrapper from "./CoinItemWizard/CoinItemDetailView/Wrapper";
 import CoinItemSummary from "./CoinItemWizard/CoinItemSummary";
 
-import {fetchWatchedCoin} from "../actions/WatchCoinsListAction";
-import {connect} from "react-redux";
+import {fetchWatchedCoin, deleteWatchedCoin} from "../actions/WatchCoinsListAction";
+
 
  class WatchedItemDetailView extends React.Component {
     state = {
@@ -15,12 +18,23 @@ import {connect} from "react-redux";
         this.props.fetchWatchedCoin(this.props.id)
     }
 
+    deleteCoin = () => {
+          this.props.deleteWatchedCoin(this.props.uid)
+    }
+
     render() {
         const {container, summaryWrapper, detailsViewWrapper} = styles;
         return (
 
             <View style={container}>
 
+                <Button  onPress={this.deleteCoin}>
+                    <Icon
+                        name="info-circle"
+                        size={25}
+                        color="#5ac6dd"
+                    />
+                </Button>
 
                 {this.props.isFetchingCoin === false ?
 
@@ -55,7 +69,7 @@ mapStateToProps = state => {
 
 
 export default connect(mapStateToProps,
-    {fetchWatchedCoin})(WatchedItemDetailView)
+    {fetchWatchedCoin, deleteWatchedCoin})(WatchedItemDetailView)
 
 
 const styles = {

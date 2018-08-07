@@ -28,20 +28,29 @@ class CoinContainer extends React.Component {
     }
 
     componentDidMount() {
-       // this.props.fetchWatchedCoins()
+        this.props.fetchWatchedCoins();
         this.props.fetchCoinData(this.state.page);
-        this.setPage()
+        this.setPage();
     }
 
-    renderItem = ({item}) => (
+   /* renderItem = ({item}) => (
         <CoinItem
             id={item.id}
             coin={item}
             addCoinToWatch={this.addCoinToWatch}
             added={this.props.watchedCoinsById.includes(item.id)}
         />
-    )
+    )*/
 
+    renderItem = ({item}) => {
+        console.warn("item in coincontainer", item, this.props.watchedCoinsById)
+      return  <CoinItem
+            id={item.id}
+            coin={item}
+            addCoinToWatch={this.addCoinToWatch}
+            added={this.props.watchedCoinsById.includes(item.id)}
+        />
+    }
 
     keyExtractor = (item, index) => item.id.toString();
 
@@ -124,6 +133,7 @@ class CoinContainer extends React.Component {
 }
 
 mapStateToProps = state => {
+    console.warn("state.watchList.coins",state.watchList.coins, Object.keys(state.watchList.coins))
     const {data} = state.coins;
     const watchedCoinsById = _.map(_.map(_.values(state.watchList.coins), "coin"), "id");
 

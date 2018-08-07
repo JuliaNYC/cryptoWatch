@@ -1,6 +1,7 @@
 import {
     FILTER_TEXT,
-    SORT_BY} from "../utils/Constants";
+    SORT_BY
+} from "../utils/Constants";
 
 const initialState = {
     text: '',
@@ -9,14 +10,14 @@ const initialState = {
 
 
 export const searchCoins = (text) => {
-        return dispatch => {
-            dispatch({
-                type: FILTER_TEXT,
-                text
-            })
+    return dispatch => {
+        dispatch({
+            type: FILTER_TEXT,
+            text
+        })
 
-        }
     }
+}
 
 export const sortBy = (sortType) => {
     return dispatch => {
