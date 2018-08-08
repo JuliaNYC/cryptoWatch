@@ -1,6 +1,7 @@
 import React from "react";
 import {
     ActivityIndicator,
+    ScrollView,
     Text,
     View
 } from "react-native";
@@ -25,13 +26,14 @@ class WatchedItemDetailView extends React.Component {
     }
 
     render() {
-        const {container, çoinWrapper, summaryWrapper, detailsViewWrapper, deleteTitle} = styles;
+        const {container, wrapper, summaryWrapper, detailsViewWrapper, deleteWrapper, deleteTitle} = styles;
         const {coin} = this.props;
         return (
 
             <View style={container}>
 
                 {this.props.isFetchingCoin === false ?
+                    <ScrollView>
                     <View style={wrapper}>
                         <View style={detailsViewWrapper}>
                             <View style={summaryWrapper}>
@@ -40,16 +42,20 @@ class WatchedItemDetailView extends React.Component {
                             <View>
                                 <DetailViewWrapper coin={coin}/>
                             </View>
+<View style={deleteWrapper}>
+                                <Button onPress={this.deleteCoin}>
+                                    <Icon
+                                        name="trash"
+                                        size={25}
+                                        color="#5ac6dd"
+                                    />
+                                    <Text style={deleteTitle}>Delete Coin from Watch List</Text>
+                                </Button>
+</View>
                         </View>
-                        <Button onPress={this.deleteCoin}>
-                            <Icon
-                                name="trash"
-                                size={25}
-                                color="#5ac6dd"
-                            />
-                            <Text style={deleteTitle}>Delete Coin from Watch List</Text>
-                        </Button>
+
                     </View>
+                    </ScrollView>
                     :
                     <View>
                         <ActivityIndicator size="large" color="#c5c1c1"/>
@@ -91,6 +97,9 @@ const styles = {
         borderBottomWidth: 3,
         marginTop: 20,
         marginLeft: 7
+    },
+    deleteWrapper: {
+        marginBottom: 50
     },
     deleteTitle: {
         color: "black"

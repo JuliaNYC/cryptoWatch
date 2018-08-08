@@ -18,7 +18,7 @@ class WatchCoinsListContainer extends React.Component {
         this.props.fetchWatchedCoins()
     }
 
-    keyExtractor = (item, index) => item.coin.toString();
+    keyExtractor = (item, index) => item.coin.id.toString();
 
     renderItem = ({item}) => (
         <WatchedItem
