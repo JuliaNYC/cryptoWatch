@@ -10,10 +10,10 @@ Cryptocurrency tracker to get the latest coin price and additional info, and wat
 
 ## Features
 
-- Tracks current prices, price changes within 24h, 1 dy and 7 days
+- Tracks current prices, price changes within 24h, 1 day and 7 days
 - Chart
-- Watching currency
-- authentication with firebase
+- Watching selected cryptocurrency
+- Authentication with firebase
 ## Note
 - Still in development - building more features, for example extending authentication (facebook login), implementing features like push notifications etc.
 
